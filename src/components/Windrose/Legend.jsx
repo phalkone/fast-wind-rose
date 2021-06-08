@@ -1,50 +1,43 @@
 import React, { Fragment } from 'react'
-import colors from './Colors'
+import Colors from './Colors'
+import PropTypes from 'prop-types'
 
-function Unit () {
-  return (
-    <text
-      x='295'
-      y='25'
-      fontWeight='bold'
-      fill='grey'
-      fontFamily='sans-serif'
-    >kts
-    </text>
-  )
-}
-
-function Scale () {
-  return (
-    Object.keys(colors).map(speed => (
-      <Fragment key={speed}>
-        <rect
-          x='270'
-          y={220 - ((speed / 5) * 20)}
-          width='20'
-          height='20'
-          stroke='grey'
-          strokeWidth='1'
-          fill={colors[speed]}
-        />
-        <text
-          x='295'
-          y={245 - ((speed / 5) * 20)}
-          fontWeight='bold'
-          fill='grey'
-          fontFamily='sans-serif'
-        >{speed === '50' ? '50<' : speed}
-        </text>
-      </Fragment>
-    ))
-  )
-}
-
-export default function Legend () {
+function Legend (props) {
   return (
     <>
-      <Scale />
-      <Unit />
+      {Object.keys(Colors).map(speed => (
+        <Fragment key={speed}>
+          <rect
+            x={props.size + 10}
+            y={(props.size / 2) + 90 - ((speed / 5) * 20)}
+            width='20'
+            height='20'
+            stroke='grey'
+            strokeWidth='1'
+            fill={Colors[speed]}
+          />
+          <text
+            x={props.size + 35}
+            y={(props.size / 2) + 115 - ((speed / 5) * 20)}
+            fill='black'
+            fontFamily='Roboto, "Open Sans", sans-serif'
+          >{speed === '50' ? '50<' : speed}
+          </text>
+        </Fragment>
+      ))}
+      <text
+        x={props.size + 35}
+        y={(props.size / 2) - 105}
+        fill='black'
+        fontFamily='Roboto, "Open Sans", sans-serif'
+      >kts
+      </text>
     </>
   )
 }
+
+Legend.propTypes = {
+  size: PropTypes.number
+}
+
+export default Legend

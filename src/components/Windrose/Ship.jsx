@@ -1,12 +1,22 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-export default function Ship () {
+function Ship (props) {
   return (
     <path
-      d='M 115 140 H 135 C 135 140 135 105 125 105 C 115 105 115 140 115 140 Z'
+      d={`M ${props.center - 10} ${props.center + 15} H ${props.center + 10} ` +
+         `C ${props.center + 10} ${props.center + 15} ${props.center + 10} ` +
+         `${props.center - 20} ${props.center} ${props.center - 20} ` +
+         `C ${props.center - 10} ${props.center - 20} ${props.center - 10} ` +
+         `${props.center + 15} ${props.center - 10} ${props.center + 15} Z`}
       fill='grey'
       opacity='0.7'
-      transform='translate(5,5)'
     />
   )
 }
+
+Ship.propTypes = {
+  center: PropTypes.number
+}
+
+export default Ship

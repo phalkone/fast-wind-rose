@@ -2,38 +2,41 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 
 export default function IntervalLabel (props) {
-  let addRadius = 2
-  let flag = 1
-  let x1Sign = -1
-  let x2Sign = 1
+  let radius = props.radius + 2
+  const sin = Math.sin(Math.PI / 180 * ((props.sectorSize - 2) / 2))
+  const cos = Math.cos(Math.PI / 180 * ((props.sectorSize - 2) / 2))
+  let sign = 1
   if (props.sector > (90 / props.sectorSize) &&
     props.sector < (270 / props.sectorSize)) {
-    addRadius = 10
-    flag = 0
-    x1Sign = 1
-    x2Sign = -1
+    radius += 8
+    sign = -1
   }
-  const x1 = 130 + x1Sign * ((120 + addRadius) * Math.sin(Math.PI / 20))
-  const y1 = 130 - ((120 + addRadius) * Math.cos(Math.PI / 20))
-  const x2 = 130 + x2Sign * ((120 + addRadius) * Math.sin(Math.PI / 20))
-  const y2 = 130 - ((120 + addRadius) * Math.cos(Math.PI / 20))
+  const x1 = props.center - sign * radius * sin
+  const y1 = props.center - radius * cos
+  const x2 = props.center + sign * radius * sin
+  const y2 = props.center - radius * cos
+
   return (
     <>
       <path
-        stroke='none'
-        id={`curved${props.sector.toString()}`}
+        id={`curved${props.sector}`}
         fill='none'
-        d={`M ${x1} ${y1} A ${120 + addRadius} ${120 + addRadius}, 0, 0, ${flag}, ${x2} ${y2}`}
-        transform={`rotate(${props.sector * props.sectorSize}, 130, 130)`}
+        d={`M ${x1} ${y1} A ${radius} ${radius},` +
+           ` 0, 0, ${sign === 1 ? 1 : 0}, ${x2} ${y2}`}
+        transform={`rotate(${props.sector * props.sectorSize},` +
+                   ` ${props.center}, ${props.center})`}
       />
       <text
-        fill='grey'
-        fontFamily='sans-serif'
-        fontSize='11px'
-        fontWeight='bold'
+        fill='black'
+        fontFamily='Roboto, "Open Sans", sans-serif'
+        textAnchor='middle'
+        fontSize={props.sectorSize < 15 ? '9px' : '11px'}
       >
-        <textPath href={`#curved${props.sector.toString()}`}>
-          {`${props.interval.toFixed(2)} hr`}
+        <textPath
+          href={`#curved${props.sector}`}
+          startOffset='50%'
+        >
+          {`${props.interval.toFixed(1)}h`}
         </textPath>
       </text>
     </>
@@ -43,5 +46,7 @@ export default function IntervalLabel (props) {
 IntervalLabel.propTypes = {
   sector: PropTypes.number,
   interval: PropTypes.number,
-  sectorSize: PropTypes.number
+  sectorSize: PropTypes.number,
+  radius: PropTypes.number,
+  center: PropTypes.number
 }
