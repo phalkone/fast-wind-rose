@@ -7,18 +7,39 @@ import IntervalLabel from './IntervalLabel'
 import PropTypes from 'prop-types'
 
 function Windrose (props) {
-  const sectors = new Array(props.sectors).fill(null).map(() => [])
-  const sectorSize = 360 / props.sectors
+  const [sectorCount, setSectorCount] = useState(12)
+  const sectors = new Array(sectorCount).fill(null).map(() => [])
+  const sectorSize = 360 / sectorCount
   for (let i = 0; i < props.dirData.length; i++) {
-    let dir = props.dirData[i][props.dirKey] + (sectorSize / 2)
+    let dir = props.dirData[i].value + (sectorSize / 2)
     if (dir > 360) dir -= 360
     const cat = Math.floor(dir / sectorSize)
-    sectors[cat].push(props.spdData[i][props.spdKey])
+    sectors[cat].push(props.spdData[i].value)
   }
   const max = sectors.map((el) => el.length).sort((a, b) => b - a)[0]
 
   return (
     <div>
+      <select
+        title='Number of sectors'
+        value={sectorCount}
+        onChange={e => { setSectorCount(Number(e.target.value)) }}
+        style={{
+          position: 'absolute',
+          top: '10px',
+          left: '10px',
+          fontSize: '14px',
+          fontFamily: 'Roboto, "Open Sans", sans-serif'
+        }}
+      >
+        <option value='4'>4</option>
+        <option value='8'>8</option>
+        <option value='12'>12</option>
+        <option value='16'>16</option>
+        <option value='24'>24</option>
+        <option value='32'>32</option>
+        <option value='36'>36</option>
+      </select>
       <svg
         version='1.1'
         viewBox={`0 0 ${props.size + (props.legend ? 65 : 0)} ${props.size}`}
@@ -27,7 +48,7 @@ function Windrose (props) {
       >
         {props.legend && <Legend size={props.size} />}
         <Chart
-          sectorSize={360 / props.sectors}
+          sectorSize={sectorSize}
           center={props.center}
           radius={props.radius}
         />
@@ -37,7 +58,7 @@ function Windrose (props) {
               <IntervalLabel
                 sector={i}
                 interval={props.interval * speeds.length}
-                sectorSize={360 / props.sectors}
+                sectorSize={sectorSize}
                 radius={props.radius}
                 center={props.center}
               />}
@@ -46,7 +67,7 @@ function Windrose (props) {
                 sector={i}
                 speeds={speeds}
                 center={props.center}
-                sectorSize={360 / props.sectors}
+                sectorSize={sectorSize}
                 barLength={(speeds.length / max) * props.radius}
                 interval={props.radius / max}
               />}
@@ -64,16 +85,12 @@ Windrose.propTypes = {
   size: PropTypes.number,
   radius: PropTypes.number,
   center: PropTypes.number,
-  sectors: PropTypes.number,
-  dirKey: PropTypes.string,
-  spdKey: PropTypes.string,
   dirData: PropTypes.array,
   spdData: PropTypes.array,
   interval: PropTypes.number
 }
 
 Windrose.defaultProps = {
-  sectors: 12,
   radius: 120,
   center: 130,
   size: 260,

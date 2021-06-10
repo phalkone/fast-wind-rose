@@ -67,11 +67,8 @@ render(
   <Windrose
     width={625}
     height={520}
-    sectors={4}
     dirData={data.metrics[1].values}
-    dirKey='value'
     spdData={data.metrics[0].values}
-    spdKey='value'
     interval={1}
     legend
   />, document.getElementById('root'))
