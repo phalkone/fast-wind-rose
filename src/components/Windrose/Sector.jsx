@@ -1,18 +1,18 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
-import Colors from './Colors'
 
 export default function Sector (props) {
   const speedCategories = []
   const cos = Math.cos(Math.PI / 180 * (props.sectorSize / 2))
   const sin = Math.sin(Math.PI / 180 * (props.sectorSize / 2))
   let length = props.barLength
+  const scale = Object.keys(props.scale)
 
-  for (let speed = 50; speed >= 0; speed -= 5) {
-    const prev = speed === 50 ? 100 : speed + 5
-    const count = props.speeds.filter((val) => val > speed && val <= prev).length
+  for (let i = scale.length - 1; i >= 0; i--) {
+    const prev = i === scale.length - 1 ? Infinity : scale[i + 1]
+    const count = props.speeds.filter((val) => val > scale[i] && val <= prev).length
     if (count) {
-      speedCategories.push([speed, length])
+      speedCategories.push([scale[i], length])
       length -= count * props.interval
     }
   }
@@ -24,7 +24,7 @@ export default function Sector (props) {
           d={`M ${props.center + (count[1] * sin)} ${props.center - (count[1] * cos)} ` +
              `A ${count[1]} ${count[1]}, 0, 0, 0, ${props.center - (count[1] * sin)} ` +
              `${props.center - (count[1] * cos)} L ${props.center} ${props.center} Z`}
-          fill={Colors[count[0]]}
+          fill={props.scale[count[0]]}
           transform={`rotate(${props.sector * props.sectorSize}, ` +
                      `${props.center}, ${props.center})`}
         />

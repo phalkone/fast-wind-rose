@@ -28,7 +28,6 @@ export default function IntervalLabel (props) {
       />
       <text
         fill='black'
-        fontFamily='Roboto, "Open Sans", sans-serif'
         textAnchor='middle'
         fontSize={props.sectorSize < 15 ? '9px' : '11px'}
       >

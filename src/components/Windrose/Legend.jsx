@@ -1,35 +1,40 @@
 import React, { Fragment } from 'react'
-import Colors from './Colors'
 import PropTypes from 'prop-types'
 
 function Legend (props) {
+  const keys = Object.keys(props.scale)
+  const length = keys.length
+  const square = ((props.size - 20) / length) > 20 ? 20 : ((props.size - 20) / length)
+  const margin = (props.size - (length * square)) / 2
+  const fontSize = square - 2
+
   return (
     <>
-      {Object.keys(Colors).map(speed => (
+      {keys.map((speed, i) => (
         <Fragment key={speed}>
           <rect
             x={props.size + 10}
-            y={(props.size / 2) + 90 - ((speed / 5) * 20)}
-            width='20'
-            height='20'
+            y={(props.size - margin) - ((i + 1) * square)}
+            width={square}
+            height={square}
             stroke='grey'
             strokeWidth='1'
-            fill={Colors[speed]}
+            fill={props.scale[speed]}
           />
           <text
-            x={props.size + 35}
-            y={(props.size / 2) + 115 - ((speed / 5) * 20)}
+            x={props.size + square + 15}
+            y={(props.size - margin) - (i * square) + 5}
             fill='black'
-            fontFamily='Roboto, "Open Sans", sans-serif'
-          >{speed === '50' ? '50<' : speed}
+            fontSize={fontSize}
+          >{i === length - 1 ? `${speed}<` : speed}
           </text>
         </Fragment>
       ))}
       <text
-        x={props.size + 35}
-        y={(props.size / 2) - 105}
+        x={props.size + square + 15}
+        y={(props.size - margin) - (length * square) + 5}
         fill='black'
-        fontFamily='Roboto, "Open Sans", sans-serif'
+        fontSize={fontSize}
       >kts
       </text>
     </>
@@ -37,7 +42,8 @@ function Legend (props) {
 }
 
 Legend.propTypes = {
-  size: PropTypes.number
+  size: PropTypes.number,
+  scale: PropTypes.object
 }
 
 export default Legend
