@@ -31,12 +31,12 @@ export default function Sector (props) {
             fill={props.scale[count[0]]}
             transform={`rotate(${props.sector * props.sectorSize}, ` +
                      `${props.center}, ${props.center})`}
-            onMouseMove={(e) => setEntered([e.clientX, e.clientY])}
+            onMouseMove={(e) => setEntered([e.clientX, e.clientY, [count[2], count[3]]])}
             onMouseOut={() => setEntered(false)}
           />
         </Fragment>
       ))}
-      {entered && <ToolTip x={entered[0]} y={entered[1]} text={speedCategories} />}
+      {entered && <ToolTip x={entered[0]} y={entered[1]} text={entered[2]} />}
     </>
   )
 }
