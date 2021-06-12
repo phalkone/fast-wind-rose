@@ -8,8 +8,8 @@ const data = {
     tag: 'wind_speed_rel',
     aggregation: { interval: 'PT1H', method: 'avg' },
     values: [
-      { timestamp: '2021-05-30T11:00:00Z', value: 15.48, interpolated: true },
-      { timestamp: '2021-05-30T12:00:00Z', value: 15.38, interpolated: true },
+      { timestamp: '2021-05-30T11:00:00Z', value: 45, interpolated: true },
+      { timestamp: '2021-05-30T12:00:00Z', value: 0, interpolated: true },
       { timestamp: '2021-05-30T13:00:00Z', value: 15.65, interpolated: true },
       { timestamp: '2021-05-30T14:00:00Z', value: 15.36, interpolated: true },
       { timestamp: '2021-05-30T15:00:00Z', value: 15.37, interpolated: true },

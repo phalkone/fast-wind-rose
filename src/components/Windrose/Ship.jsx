@@ -9,7 +9,9 @@ function Ship (props) {
          `${props.center - 20} ${props.center} ${props.center - 20} ` +
          `C ${props.center - 10} ${props.center - 20} ${props.center - 10} ` +
          `${props.center + 15} ${props.center - 10} ${props.center + 15} Z`}
-      fill='grey'
+      fill='none'
+      stroke='grey'
+      strokeWidth='3'
       opacity='0.7'
     />
   )
