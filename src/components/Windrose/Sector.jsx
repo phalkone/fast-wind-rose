@@ -15,8 +15,8 @@ export default function Sector (props) {
     const count = props.speeds.filter((val) => val >= scale[i] && val < prev).length
     if (prev === Infinity) prev = scale[scale.length - 1]
     if (count) {
-      speedCategories.push([scale[i], length, `${scale[i]}-${prev}`, count])
-      length -= count * props.interval
+      speedCategories.push([scale[i], length, `${scale[i]}-${prev}`, count * props.interval])
+      length -= count * props.unit
     }
   }
 
@@ -36,7 +36,14 @@ export default function Sector (props) {
           />
         </Fragment>
       ))}
-      {entered && <ToolTip x={entered[0]} y={entered[1]} text={entered[2]} />}
+      {entered &&
+        <ToolTip
+          x={entered[0]}
+          y={entered[1]}
+          text={entered[2]}
+          xFactor={props.xFactor}
+          yFactor={props.yFactor}
+        />}
     </>
   )
 }
@@ -46,7 +53,10 @@ Sector.propTypes = {
   sectorSize: PropTypes.number,
   barLength: PropTypes.number,
   speeds: PropTypes.array,
-  interval: PropTypes.number,
+  unit: PropTypes.number,
   center: PropTypes.number,
-  scale: PropTypes.object
+  scale: PropTypes.object,
+  interval: PropTypes.number,
+  yFactor: PropTypes.number,
+  xFactor: PropTypes.number
 }

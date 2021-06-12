@@ -2,22 +2,25 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 
 export default function ToolTip (props) {
+  const tooltip = `${props.text[0]}kts: ${props.text[1].toFixed(1)}h`
   return (
     <>
       <rect
-        x={props.x / 2}
-        y={props.y / 2}
-        width={60}
-        height={10}
-        fill='black'
-        opacity={0.5}
+        id='tooltip'
+        x={props.x / props.xFactor}
+        y={props.y / props.yFactor}
+        width={tooltip.length * 6}
+        height={14}
+        opacity='0.3'
       />
       <text
-        x={(props.x / 2 + 5)}
-        y={(props.y / 2 + 8)}
-        fontSize='8px'
+        id='tooltiptext'
+        x={(props.x / props.xFactor + 2)}
+        y={(props.y / props.yFactor + 10)}
+        textLength={tooltip.length * 6 - 5}
+        fontSize='9px'
         fill='white'
-      >{`${props.text[0]}kts: ${props.text[1].toFixed(1)}h`}
+      >{tooltip}
       </text>
     </>
   )
@@ -26,5 +29,7 @@ export default function ToolTip (props) {
 ToolTip.propTypes = {
   x: PropTypes.number,
   y: PropTypes.number,
-  text: PropTypes.array
+  text: PropTypes.array,
+  yFactor: PropTypes.number,
+  xFactor: PropTypes.number
 }

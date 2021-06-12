@@ -11,10 +11,10 @@ function Windrose (props) {
   const sectors = new Array(sectorCount).fill(null).map(() => [])
   const sectorSize = 360 / sectorCount
   for (let i = 0; i < props.dirData.length; i++) {
-    let dir = props.dirData[i].value + (sectorSize / 2)
+    let dir = props.dirData[i][props.dirKey] + (sectorSize / 2)
     if (dir > 360) dir -= 360
     const cat = Math.floor(dir / sectorSize)
-    sectors[cat].push(props.spdData[i].value)
+    sectors[cat].push(props.spdData[i][props.spdKey])
   }
   const max = sectors.map((el) => el.length).sort((a, b) => b - a)[0]
 
@@ -32,7 +32,7 @@ function Windrose (props) {
         }}
       >
         <option value='4'>4</option>
-        <option value='7'>7</option>
+        <option value='8'>8</option>
         <option value='12'>12</option>
         <option value='16'>16</option>
         <option value='24'>24</option>
@@ -68,11 +68,17 @@ function Windrose (props) {
                 center={props.center}
                 sectorSize={sectorSize}
                 barLength={(speeds.length / max) * props.radius}
-                interval={props.radius / max}
+                unit={props.radius / max}
                 scale={props.scale}
+                interval={props.interval}
+                size={props.size}
+                xFactor={props.width / (props.size + (props.legend ? 65 : 0))}
+                yFactor={props.height / props.size}
               />}
           </Fragment>))}
         <Ship center={props.center} />
+        <use href='#tooltip' fill='black' />
+        <use href='#tooltiptext' />
       </svg>
     </div>
   )
@@ -88,7 +94,9 @@ Windrose.propTypes = {
   dirData: PropTypes.array,
   spdData: PropTypes.array,
   interval: PropTypes.number,
-  scale: PropTypes.object
+  scale: PropTypes.object,
+  spdKey: PropTypes.string,
+  dirKey: PropTypes.string
 }
 
 Windrose.defaultProps = {
@@ -97,6 +105,8 @@ Windrose.defaultProps = {
   size: 260,
   width: 650,
   height: 520,
+  spdKey: 'value',
+  dirKey: 'value',
   scale: {
     0: 'rgb(60,95,156)',
     5: 'rgb(94,131,188)',
