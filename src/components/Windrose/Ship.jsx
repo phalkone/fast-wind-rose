@@ -1,6 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+/**
+ * Outline of the ship
+ */
 function Ship (props) {
   return (
     <path
@@ -18,6 +21,9 @@ function Ship (props) {
 }
 
 Ship.propTypes = {
+  /**
+   * The center of the ship path. x and y coordinates are assumed to be the same.
+   */
   center: PropTypes.number
 }
 

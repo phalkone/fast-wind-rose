@@ -6,8 +6,14 @@ import Sector from './Sector'
 import IntervalLabel from './IntervalLabel'
 import PropTypes from 'prop-types'
 
+/**
+ * Draws a windrose for provided relative wind data
+ */
 function Windrose (props) {
+  /* Use state to set the number of sectors */
   const [sectorCount, setSectorCount] = useState(12)
+
+  /* Divide data points per sector */
   const sectors = new Array(sectorCount).fill(null).map(() => [])
   const sectorSize = 360 / sectorCount
   for (let i = 0; i < props.dirData.length; i++) {
@@ -16,10 +22,12 @@ function Windrose (props) {
     const cat = Math.floor(dir / sectorSize)
     sectors[cat].push(props.spdData[i][props.spdKey])
   }
+  /* The sector with maximum number of data points defines the scale */
   const max = sectors.map((el) => el.length).sort((a, b) => b - a)[0]
 
   return (
     <div>
+      {/* Selector for the number of sectors */}
       <select
         title='Number of sectors'
         value={sectorCount}
@@ -39,18 +47,21 @@ function Windrose (props) {
         <option value='32'>32</option>
         <option value='36'>36</option>
       </select>
+      {/* Windrose SVG with optional legend */}
       <svg
         version='1.1'
         viewBox={`0 0 ${props.size + (props.legend ? 65 : 0)} ${props.size}`}
         width={props.width}
         height={props.height}
       >
+        {/* Draw legend only if option is given as prop */}
         {props.legend && <Legend size={props.size} scale={props.scale} />}
         <Chart
           sectorSize={sectorSize}
           center={props.center}
           radius={props.radius}
         />
+        {/* Draw each sector with interval label */}
         {sectors.map((speeds, i) => (
           <Fragment key={i}>
             {speeds.length &&
@@ -76,7 +87,9 @@ function Windrose (props) {
                 yFactor={props.height / props.size}
               />}
           </Fragment>))}
+        {/* Draw ship outline */}
         <Ship center={props.center} />
+        {/* Ensures that tooltips are always on top */}
         <use href='#tooltip' fill='black' />
         <use href='#tooltiptext' />
       </svg>
@@ -85,17 +98,55 @@ function Windrose (props) {
 }
 
 Windrose.propTypes = {
+  /**
+   * Viewbox height. Actual height of the windrose
+   */
   height: PropTypes.number,
+  /**
+   * Viewbox width. Actual height of the windrose
+   */
   width: PropTypes.number,
+  /**
+   * Hide or display legend
+   */
   legend: PropTypes.bool,
+  /**
+   * Width/height of chart. Will be displayed in specified viewbox.
+   */
   size: PropTypes.number,
+  /**
+   * Radius of the chart
+   */
   radius: PropTypes.number,
+  /**
+   * Center of the chart. x and y coordinates are assumed to be the same.
+   */
   center: PropTypes.number,
+  /**
+   * Array with directional data for the wind
+   */
   dirData: PropTypes.array,
+  /**
+   * Array with speed data for the wind
+   */
   spdData: PropTypes.array,
+  /**
+   * Fixed interval between data points specified in hours. If data points are
+   * every 30 min, then value should be 0.5
+   */
   interval: PropTypes.number,
+  /**
+   * Scale of speeds with the linked color. Example as follows:
+   *  { 0: 'rgb(60,95,156)', 5: 'rgb(94,131,188)' }
+   */
   scale: PropTypes.object,
+  /**
+   * Key for speed data
+   */
   spdKey: PropTypes.string,
+  /**
+   * Key for directional data
+   */
   dirKey: PropTypes.string
 }
 

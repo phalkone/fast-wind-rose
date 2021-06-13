@@ -1,9 +1,14 @@
+/* eslint-disable react/jsx-fragments */
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 
+/**
+ * The chart that can be divided into a specified number of sectors
+ */
 function Chart (props) {
   return (
-    <>
+    <Fragment>
+      {/* Sector lines */}
       {[...new Array(Math.round(360 / props.sectorSize)).keys()].map(i => (
         <Fragment key={i}>
           <line
@@ -18,6 +23,7 @@ function Chart (props) {
           />
         </Fragment>
       ))}
+      {/* Circles */}
       {[...new Array(4).keys()].map(i => (
         <Fragment key={i}>
           <circle
@@ -31,13 +37,22 @@ function Chart (props) {
           />
         </Fragment>
       ))}
-    </>
+    </Fragment>
   )
 }
 
 Chart.propTypes = {
+  /**
+   * The size of each sector in degrees
+   */
   sectorSize: PropTypes.number,
+  /**
+   * The radius of the outer circle in degrees
+   */
   radius: PropTypes.number,
+  /**
+   * The center of the circles. x and y coordinates are assumed to be the same.
+   */
   center: PropTypes.number
 }
 
