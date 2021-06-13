@@ -9,5 +9,6 @@ render(
     dirData={mockData.metrics[1].values}
     spdData={mockData.metrics[0].values}
     interval={1}
+    sectorCount={8}
     legend
   />, document.getElementById('root'))

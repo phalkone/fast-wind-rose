@@ -10,8 +10,9 @@ import PropTypes from 'prop-types'
  * Draws a windrose for provided relative wind data
  */
 function Windrose (props) {
-  /* Use state to set the number of sectors */
-  const [sectorCount, setSectorCount] = useState(12)
+  /* Use state to set the number of sectors and show/hide legend */
+  const [sectorCount, setSectorCount] = useState(props.sectorCount)
+  const [legend, setLegend] = useState(props.legend)
 
   /* Divide data points per sector */
   const sectors = new Array(sectorCount).fill(null).map(() => [])
@@ -35,8 +36,7 @@ function Windrose (props) {
         style={{
           position: 'absolute',
           top: '10px',
-          left: '10px',
-          fontSize: '14px'
+          left: '10px'
         }}
       >
         <option value='4'>4</option>
@@ -47,15 +47,25 @@ function Windrose (props) {
         <option value='32'>32</option>
         <option value='36'>36</option>
       </select>
+      <button
+        title='Show/hide legend'
+        onClick={e => { setLegend(!legend) }}
+        style={{
+          position: 'absolute',
+          top: '10px',
+          left: props.width - 150
+        }}
+      >{legend ? '<<' : '>>'}
+      </button>
       {/* Windrose SVG with optional legend */}
       <svg
         version='1.1'
-        viewBox={`0 0 ${props.size + (props.legend ? 65 : 0)} ${props.size}`}
+        viewBox={`0 0 ${props.size + (legend ? 65 : 0)} ${props.size}`}
         width={props.width}
         height={props.height}
       >
         {/* Draw legend only if option is given as prop */}
-        {props.legend && <Legend size={props.size} scale={props.scale} />}
+        {legend && <Legend size={props.size} scale={props.scale} />}
         <Chart
           sectorSize={sectorSize}
           center={props.center}
@@ -83,7 +93,7 @@ function Windrose (props) {
                 scale={props.scale}
                 interval={props.interval}
                 size={props.size}
-                xFactor={props.width / (props.size + (props.legend ? 65 : 0))}
+                xFactor={props.width / (props.size + (legend ? 65 : 0))}
                 yFactor={props.height / props.size}
               />}
           </Fragment>))}
@@ -147,7 +157,11 @@ Windrose.propTypes = {
   /**
    * Key for directional data
    */
-  dirKey: PropTypes.string
+  dirKey: PropTypes.string,
+  /**
+   * Default number of sectors
+   */
+  sectorCount: PropTypes.oneOf([4, 8, 12, 16, 24, 32, 36])
 }
 
 Windrose.defaultProps = {
@@ -158,6 +172,7 @@ Windrose.defaultProps = {
   height: 520,
   spdKey: 'value',
   dirKey: 'value',
+  sectorCount: 12,
   scale: {
     0: 'rgb(60,95,156)',
     5: 'rgb(94,131,188)',
