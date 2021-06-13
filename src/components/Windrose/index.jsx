@@ -25,6 +25,7 @@ function Windrose (props) {
   }
   /* The sector with maximum number of data points defines the scale */
   const max = sectors.map((el) => el.length).sort((a, b) => b - a)[0]
+  const complilationSize = 260 / props.enlarge
 
   return (
     <div>
@@ -53,23 +54,23 @@ function Windrose (props) {
         style={{
           position: 'absolute',
           top: '10px',
-          left: props.width - 150
+          left: props.size - 30
         }}
       >{legend ? '<<' : '>>'}
       </button>
       {/* Windrose SVG with optional legend */}
       <svg
         version='1.1'
-        viewBox={`0 0 ${props.size + (legend ? 65 : 0)} ${props.size}`}
-        width={props.width}
-        height={props.height}
+        viewBox={`0 0 ${complilationSize + (legend ? 65 : 0)} ${complilationSize}`}
+        width={props.size + (legend ? 65 * (props.size / complilationSize) : 0)}
+        height={props.size}
       >
         {/* Draw legend only if option is given as prop */}
-        {legend && <Legend size={props.size} scale={props.scale} />}
+        {legend && <Legend size={complilationSize} scale={props.scale} />}
         <Chart
           sectorSize={sectorSize}
-          center={props.center}
-          radius={props.radius}
+          center={complilationSize / 2}
+          radius={complilationSize / 2 - 10}
         />
         {/* Draw each sector with interval label */}
         {sectors.map((speeds, i) => (
@@ -79,26 +80,26 @@ function Windrose (props) {
                 sector={i}
                 interval={props.interval * speeds.length}
                 sectorSize={sectorSize}
-                radius={props.radius}
-                center={props.center}
+                radius={(complilationSize / 2) - 10}
+                center={complilationSize / 2}
               />}
             {speeds.length &&
               <Sector
                 sector={i}
                 speeds={speeds}
-                center={props.center}
+                center={complilationSize / 2}
                 sectorSize={sectorSize}
-                barLength={(speeds.length / max) * props.radius}
-                unit={props.radius / max}
+                barLength={(speeds.length / max) * (complilationSize / 2 - 10)}
+                unit={(complilationSize / 2 - 10) / max}
                 scale={props.scale}
                 interval={props.interval}
                 size={props.size}
-                xFactor={props.width / (props.size + (legend ? 65 : 0))}
-                yFactor={props.height / props.size}
+                xFactor={props.size / complilationSize}
+                yFactor={props.size / complilationSize}
               />}
           </Fragment>))}
         {/* Draw ship outline */}
-        <Ship center={props.center} />
+        <Ship center={complilationSize / 2} />
         {/* Ensures that tooltips are always on top */}
         <use href='#tooltip' fill='black' />
         <use href='#tooltiptext' />
@@ -109,14 +110,6 @@ function Windrose (props) {
 
 Windrose.propTypes = {
   /**
-   * Viewbox height. Actual height of the windrose
-   */
-  height: PropTypes.number,
-  /**
-   * Viewbox width. Actual height of the windrose
-   */
-  width: PropTypes.number,
-  /**
    * Hide or display legend
    */
   legend: PropTypes.bool,
@@ -124,14 +117,6 @@ Windrose.propTypes = {
    * Width/height of chart. Will be displayed in specified viewbox.
    */
   size: PropTypes.number,
-  /**
-   * Radius of the chart
-   */
-  radius: PropTypes.number,
-  /**
-   * Center of the chart. x and y coordinates are assumed to be the same.
-   */
-  center: PropTypes.number,
   /**
    * Array with directional data for the wind
    */
@@ -141,8 +126,8 @@ Windrose.propTypes = {
    */
   spdData: PropTypes.array,
   /**
-   * Fixed interval between data points specified in hours. If data points are
-   * every 30 min, then value should be 0.5
+   * Fixed interval between data points specified in hours. For example if
+   * data points are every 30 min, then value should be 0.5
    */
   interval: PropTypes.number,
   /**
@@ -161,18 +146,20 @@ Windrose.propTypes = {
   /**
    * Default number of sectors
    */
-  sectorCount: PropTypes.oneOf([4, 8, 12, 16, 24, 32, 36])
+  sectorCount: PropTypes.oneOf([4, 8, 12, 16, 24, 32, 36]),
+  /**
+   * Scales the compilation scale against the viewbox. Choose a value lower
+   * than 1 to scale down and larger than 1 to scale up.
+   */
+  enlarge: PropTypes.number
 }
 
 Windrose.defaultProps = {
-  radius: 120,
-  center: 130,
   size: 260,
-  width: 650,
-  height: 520,
   spdKey: 'value',
   dirKey: 'value',
   sectorCount: 12,
+  enlarge: 1,
   scale: {
     0: 'rgb(60,95,156)',
     5: 'rgb(94,131,188)',
