@@ -5,6 +5,7 @@ import Ship from './Ship'
 import Sector from './Sector'
 import IntervalLabel from './IntervalLabel'
 import PropTypes from 'prop-types'
+import './index.css'
 
 /**
  * Draws a windrose for provided relative wind data
@@ -34,11 +35,6 @@ function Windrose (props) {
         title='Number of sectors'
         value={sectorCount}
         onChange={e => { setSectorCount(Number(e.target.value)) }}
-        style={{
-          position: 'absolute',
-          top: '10px',
-          left: '10px'
-        }}
       >
         <option value='4'>4</option>
         <option value='8'>8</option>
@@ -52,8 +48,6 @@ function Windrose (props) {
         title='Show/hide legend'
         onClick={e => { setLegend(!legend) }}
         style={{
-          position: 'absolute',
-          top: '10px',
           left: props.size - 30
         }}
       >{legend ? '<<' : '>>'}
