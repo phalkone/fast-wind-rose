@@ -8,6 +8,45 @@ import PropTypes from 'prop-types'
 import './index.css'
 
 /**
+ * Validate wind direction
+ * @param {Number} dir Wind direction
+ */
+function validateDir (dir) {
+  return (typeof dir === 'number' && dir >= 0 && dir <= 360)
+}
+
+/**
+ * Validate wind speed
+ * @param {Number} spd Wind speed
+ */
+function validateSpd (spd) {
+  return (typeof spd === 'number' && spd >= 0 && spd <= 120)
+}
+
+/**
+ * Sanitizes the data and divides it into sectors
+ * @param {Number} sectorCount Number of sectors
+ * @param {Array} dirData Array of wind direction data objects
+ * @param {String} dirKey Key indicating the value of the wind direction
+ * @param {Array} spdData Array of wind speed data objects
+ * @param {String} spdKey Key indicating the value of the wind speed
+ * @param {String} commonKey Key that is common between direction and speed
+ */
+function divideBySector (sectorCount, dirData, dirKey, spdData, spdKey, commonKey) {
+  const sectors = new Array(sectorCount).fill(null).map(() => [])
+  for (let i = 0; i < dirData.length; i++) {
+    if (validateDir(dirData[i][dirKey]) && validateSpd(spdData[i][spdKey]) &&
+      dirData[i][commonKey] === spdData[i][commonKey]) {
+      let dir = dirData[i][dirKey] + (180 / sectorCount)
+      if (dir >= 360) dir -= 360
+      const cat = Math.floor((dir * sectorCount) / 360)
+      sectors[cat].push(spdData[i][spdKey])
+    }
+  }
+  return sectors
+}
+
+/**
  * Draws a windrose for provided relative wind data
  */
 function Windrose (props) {
@@ -16,16 +55,13 @@ function Windrose (props) {
   const [legend, setLegend] = useState(props.legend)
 
   /* Divide data points per sector */
-  const sectors = new Array(sectorCount).fill(null).map(() => [])
-  const sectorSize = 360 / sectorCount
-  for (let i = 0; i < props.dirData.length; i++) {
-    let dir = props.dirData[i][props.dirKey] + (sectorSize / 2)
-    if (dir >= 360) dir -= 360
-    const cat = Math.floor(dir / sectorSize)
-    sectors[cat].push(props.spdData[i][props.spdKey])
-  }
+  const sectors = divideBySector(sectorCount, props.dirData, props.dirKey,
+    props.spdData, props.spdKey, props.commonKey)
+
   /* The sector with maximum number of data points defines the scale */
   const max = sectors.map((el) => el.length).sort((a, b) => b - a)[0]
+
+  /* Set the viewBox size compared to the compilation size */
   const complilationSize = 260 / props.enlarge
 
   return (
@@ -60,7 +96,7 @@ function Windrose (props) {
         {/* Draw legend only if option is given as prop */}
         {legend && <Legend size={complilationSize} scale={props.scale} />}
         <Chart
-          sectorSize={sectorSize}
+          sectorCount={sectorCount}
           center={complilationSize / 2}
           radius={complilationSize / 2 - 10}
         />
@@ -71,7 +107,7 @@ function Windrose (props) {
               <IntervalLabel
                 sector={i}
                 interval={props.interval * speeds.length}
-                sectorSize={sectorSize}
+                sectorSize={360 / sectorCount}
                 radius={(complilationSize / 2) - 10}
                 center={complilationSize / 2}
               />}
@@ -80,7 +116,7 @@ function Windrose (props) {
                 sector={i}
                 speeds={speeds}
                 center={complilationSize / 2}
-                sectorSize={sectorSize}
+                sectorSize={360 / sectorCount}
                 barLength={(speeds.length / max) * (complilationSize / 2 - 10)}
                 unit={(complilationSize / 2 - 10) / max}
                 scale={props.scale}
@@ -153,13 +189,18 @@ Windrose.propTypes = {
   /**
    * Array that defines the number of sectors the user can choose from.
    */
-  sectorArray: PropTypes.arrayOf(PropTypes.number)
+  sectorArray: PropTypes.arrayOf(PropTypes.number),
+  /**
+   * Common key between direction and speed data
+   */
+  commonKey: PropTypes.string
 }
 
 Windrose.defaultProps = {
   size: 260,
   spdKey: 'value',
   dirKey: 'value',
+  commonKey: 'timestamp',
   sectorCount: 12,
   enlarge: 1,
   sectorArray: [4, 8, 12, 16, 24, 32, 36],

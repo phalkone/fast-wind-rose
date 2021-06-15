@@ -9,7 +9,7 @@ function Chart (props) {
   return (
     <Fragment>
       {/* Sector lines */}
-      {[...new Array(Math.round(360 / props.sectorSize)).keys()].map(i => (
+      {[...new Array(props.sectorCount).keys()].map(i => (
         <Fragment key={i}>
           <line
             x1={props.center}
@@ -18,7 +18,7 @@ function Chart (props) {
             y2={props.center}
             stroke='grey'
             strokeWidth='1'
-            transform={`rotate(${(props.sectorSize / 2) + i * props.sectorSize},` +
+            transform={`rotate(${(0.5 + i) * (360 / props.sectorCount)},` +
                        ` ${props.center},${props.center})`}
           />
         </Fragment>
@@ -43,9 +43,9 @@ function Chart (props) {
 
 Chart.propTypes = {
   /**
-   * The size of each sector in degrees
+   * The number of sectors
    */
-  sectorSize: PropTypes.number,
+  sectorCount: PropTypes.number,
   /**
    * The radius of the outer circle in degrees
    */
