@@ -20,7 +20,7 @@ function Windrose (props) {
   const sectorSize = 360 / sectorCount
   for (let i = 0; i < props.dirData.length; i++) {
     let dir = props.dirData[i][props.dirKey] + (sectorSize / 2)
-    if (dir > 360) dir -= 360
+    if (dir >= 360) dir -= 360
     const cat = Math.floor(dir / sectorSize)
     sectors[cat].push(props.spdData[i][props.spdKey])
   }
@@ -36,13 +36,11 @@ function Windrose (props) {
         value={sectorCount}
         onChange={e => { setSectorCount(Number(e.target.value)) }}
       >
-        <option value='4'>4</option>
-        <option value='8'>8</option>
-        <option value='12'>12</option>
-        <option value='16'>16</option>
-        <option value='24'>24</option>
-        <option value='32'>32</option>
-        <option value='36'>36</option>
+        {props.sectorArray.map(s => (
+          <Fragment key={s}>
+            <option value={s}>{s}</option>
+          </Fragment>
+        ))}
       </select>
       <button
         title='Show/hide legend'
@@ -114,11 +112,11 @@ Windrose.propTypes = {
   /**
    * Array with directional data for the wind
    */
-  dirData: PropTypes.array,
+  dirData: PropTypes.arrayOf(PropTypes.object),
   /**
    * Array with speed data for the wind
    */
-  spdData: PropTypes.array,
+  spdData: PropTypes.arrayOf(PropTypes.object),
   /**
    * Fixed interval between data points specified in hours. For example if
    * data points are every 30 min, then value should be 0.5
@@ -140,12 +138,22 @@ Windrose.propTypes = {
   /**
    * Default number of sectors
    */
-  sectorCount: PropTypes.oneOf([4, 8, 12, 16, 24, 32, 36]),
+  sectorCount: function (props, propName, componentName) {
+    if (!props.sectorArray.includes(props[propName])) {
+      return new Error(
+        `Invalid prop ${propName} supplied to ${componentName}. Validation failed.`
+      )
+    }
+  },
   /**
    * Scales the compilation scale against the viewbox. Choose a value lower
    * than 1 to scale down and larger than 1 to scale up.
    */
-  enlarge: PropTypes.number
+  enlarge: PropTypes.number,
+  /**
+   * Array that defines the number of sectors the user can choose from.
+   */
+  sectorArray: PropTypes.arrayOf(PropTypes.number)
 }
 
 Windrose.defaultProps = {
@@ -154,6 +162,7 @@ Windrose.defaultProps = {
   dirKey: 'value',
   sectorCount: 12,
   enlarge: 1,
+  sectorArray: [4, 8, 12, 16, 24, 32, 36],
   scale: {
     0: 'rgb(60,95,156)',
     5: 'rgb(94,131,188)',

@@ -3,7 +3,6 @@ button {
   top: 10px;
   color: rgb(0, 0, 0);
   background-color: white;
-  font-size: 18px;
   font-weight: bolder;
   border: 1px solid black;
   text-decoration: none;
@@ -20,7 +19,6 @@ select {
   top: 10px;
   left: 10px;
   padding: 2px;
-  font-size: 16px;
 }
 
 svg, select, button {
