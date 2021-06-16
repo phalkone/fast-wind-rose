@@ -24,7 +24,7 @@ function validateSpd (spd) {
 }
 
 /**
- * Sanitizes the data and divides it into sectors
+ * Divides data into sectors
  * @param {Number} sectorCount Number of sectors
  * @param {Array} dirData Array of wind direction data objects
  * @param {String} dirKey Key indicating the value of the wind direction
@@ -172,7 +172,7 @@ Windrose.propTypes = {
    */
   dirKey: PropTypes.string,
   /**
-   * Default number of sectors
+   * Default number of sectors. Must be included in sectorArray.
    */
   sectorCount: function (props, propName, componentName) {
     if (!props.sectorArray.includes(props[propName])) {
@@ -203,6 +203,7 @@ Windrose.defaultProps = {
   commonKey: 'timestamp',
   sectorCount: 12,
   enlarge: 1,
+  interval: 1,
   sectorArray: [4, 8, 12, 16, 24, 32, 36],
   scale: {
     0: 'rgb(60,95,156)',

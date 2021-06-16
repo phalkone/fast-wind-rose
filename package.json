@@ -1,7 +1,7 @@
 {
   "name": "fast-wind-rose",
   "version": "1.0.0",
-  "description": "",
+  "description": "The FAST wind rose provides a visual representation of the relative wind.",
   "main": "index.js",
   "scripts": {
     "test": "jest",
@@ -11,7 +11,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "peerDependencies": {
     "prop-types": "^15.7.2",
     "react": "^16.14.0",
