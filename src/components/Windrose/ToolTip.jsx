@@ -11,8 +11,8 @@ export default function ToolTip (props) {
       {/* Background of tooltip */}
       <rect
         id='tooltip'
-        x={props.x / props.xFactor}
-        y={props.y / props.yFactor}
+        x={props.x / props.factor}
+        y={props.y / props.factor}
         width={tooltip.length * 6}
         height={14}
         opacity='0.3'
@@ -20,8 +20,8 @@ export default function ToolTip (props) {
       {/* Tooltip text */}
       <text
         id='tooltiptext'
-        x={(props.x / props.xFactor + 2)}
-        y={(props.y / props.yFactor + 10)}
+        x={(props.x / props.factor + 2)}
+        y={(props.y / props.factor + 10)}
         textLength={tooltip.length * 6 - 5}
         fontSize='9px'
         fill='white'
@@ -47,9 +47,5 @@ ToolTip.propTypes = {
   /**
    * Scale factor in y direction due to viewBox of SVG vs actual size of SVG.
    */
-  yFactor: PropTypes.number,
-  /**
-   * Scale factor in x direction due to viewBox of SVG vs actual size of SVG.
-   */
-  xFactor: PropTypes.number
+  factor: PropTypes.number
 }

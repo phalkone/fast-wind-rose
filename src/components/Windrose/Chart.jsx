@@ -14,7 +14,7 @@ function Chart (props) {
           <line
             x1={props.center}
             x2={props.center}
-            y1={props.center - props.radius}
+            y1={10}
             y2={props.center}
             stroke='grey'
             strokeWidth='1'
@@ -29,7 +29,7 @@ function Chart (props) {
           <circle
             cx={props.center}
             cy={props.center}
-            r={props.radius - i * (props.radius / 4)}
+            r={(4 - i) * ((props.center - 10) / 4)}
             fill='none'
             strokeWidth='1'
             stroke='grey'
@@ -47,11 +47,7 @@ Chart.propTypes = {
    */
   sectorCount: PropTypes.number,
   /**
-   * The radius of the outer circle in degrees
-   */
-  radius: PropTypes.number,
-  /**
-   * The center of the circles. x and y coordinates are assumed to be the same.
+   * The center of the chart. x and y coordinates are the same.
    */
   center: PropTypes.number
 }

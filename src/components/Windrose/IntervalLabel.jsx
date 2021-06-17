@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
  * Shows the interval of each sector
  */
 export default function IntervalLabel (props) {
-  let radius = props.radius + 2
+  let radius = props.center - 8
   const sin = Math.sin(Math.PI / 180 * ((props.sectorSize - 2) / 2))
   const cos = Math.cos(Math.PI / 180 * ((props.sectorSize - 2) / 2))
   let sign = 1
@@ -61,10 +61,6 @@ IntervalLabel.propTypes = {
    * Size of each sector in degrees
    */
   sectorSize: PropTypes.number,
-  /**
-   * Radius of the chart
-   */
-  radius: PropTypes.number,
   /**
    * The center of the sectors. x and y coordinates are assumed to be the same.
    */

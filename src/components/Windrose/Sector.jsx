@@ -50,8 +50,7 @@ export default function Sector (props) {
           x={entered[0]}
           y={entered[1]}
           text={entered[2]}
-          xFactor={props.xFactor}
-          yFactor={props.yFactor}
+          factor={props.factor}
         />}
     </>
   )
@@ -93,11 +92,8 @@ Sector.propTypes = {
    */
   interval: PropTypes.number,
   /**
-   * Scale factor in y direction due to viewBox of SVG vs actual size of SVG.
+   * Factor defining ratio between actual size and compilation size for correct
+   * placement of tooltip.
    */
-  yFactor: PropTypes.number,
-  /**
-   * Scale factor in x direction due to viewBox of SVG vs actual size of SVG.
-   */
-  xFactor: PropTypes.number
+  factor: PropTypes.number
 }

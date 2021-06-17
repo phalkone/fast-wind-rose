@@ -59,6 +59,9 @@ const Button = styled.button`
   text-decoration: none;
   padding: 0 5px;
   transition-duration: 0.4s;
+  &:hover {
+    background-color: rgb(203, 203, 203);
+  }
 `
 /**
  * Styled select
@@ -92,7 +95,7 @@ function Windrose (props) {
   const max = sectors.map((el) => el.length).sort((a, b) => b - a)[0]
 
   /* Set the viewBox size compared to the compilation size */
-  const complilationSize = 260 / props.enlarge
+  const compilationSize = 260 / props.enlarge
 
   return (
     <Container>
@@ -119,16 +122,15 @@ function Windrose (props) {
       {/* Windrose SVG with optional legend */}
       <svg
         version='1.1'
-        viewBox={`0 0 ${complilationSize + (legend ? 65 : 0)} ${complilationSize}`}
-        width={props.size + (legend ? 65 * (props.size / complilationSize) : 0)}
+        viewBox={`0 0 ${compilationSize + (legend ? 65 : 0)} ${compilationSize}`}
+        width={props.size + (legend ? 65 * (props.size / compilationSize) : 0)}
         height={props.size}
       >
         {/* Draw legend only if option is given as prop */}
-        {legend && <Legend size={complilationSize} scale={props.scale} />}
+        {legend && <Legend size={compilationSize} scale={props.scale} />}
         <Chart
           sectorCount={sectorCount}
-          center={complilationSize / 2}
-          radius={complilationSize / 2 - 10}
+          center={compilationSize / 2}
         />
         {/* Draw each sector with interval label */}
         {sectors.map((speeds, i) => (
@@ -138,26 +140,23 @@ function Windrose (props) {
                 sector={i}
                 interval={props.interval * speeds.length}
                 sectorSize={360 / sectorCount}
-                radius={(complilationSize / 2) - 10}
-                center={complilationSize / 2}
+                center={compilationSize / 2}
               />}
             {speeds.length &&
               <Sector
                 sector={i}
                 speeds={speeds}
-                center={complilationSize / 2}
+                center={compilationSize / 2}
                 sectorSize={360 / sectorCount}
-                barLength={(speeds.length / max) * (complilationSize / 2 - 10)}
-                unit={(complilationSize / 2 - 10) / max}
+                barLength={(speeds.length / max) * (compilationSize / 2 - 10)}
+                unit={(compilationSize / 2 - 10) / max}
                 scale={props.scale}
                 interval={props.interval}
-                size={props.size}
-                xFactor={props.size / complilationSize}
-                yFactor={props.size / complilationSize}
+                factor={props.size / compilationSize}
               />}
           </Fragment>))}
         {/* Draw ship outline */}
-        <Ship center={complilationSize / 2} />
+        <Ship center={compilationSize / 2} />
         {/* Ensures that tooltips are always on top */}
         <use href='#tooltip' fill='black' />
         <use href='#tooltiptext' />
