@@ -9,9 +9,37 @@ Main principles the FAST wind rose are:
 1. **Simple** deploy as React component.
 1. **Adaptive** set attributes to determine the look and size.
 
-## Example
+## Installation
+
+You can install `fast-wind-rose` via Yarn or npm:
+
+```bash
+# If using Yarn:
+yarn add fast-wind-rose
+
+# If using npm:
+npm install --save fast-wind-rose
+```
+
+The core component from react-fout-stager is `Windrose`.
+This module can be required via ES imports or CommonJS require.
+
+```js
+import Windrose from 'fast-wind-rose';
+
+// using require
+const Windrose = require('fast-wind-rose');
+```
+
+## Usage
 
 ```jsx
+import React from 'react'
+import { render } from 'react-dom'
+import Windrose from 'fast-wind-rose'
+import mockData from './mocks'
+
+render(
   <Windrose
     dirData={mockData.metrics[1].values}
     spdData={mockData.metrics[0].values}
@@ -19,7 +47,7 @@ Main principles the FAST wind rose are:
     sectorCount={12}
     size={500}
     legend
-  />
+  />, document.getElementById('root'))
 ```
 
 ### PROPS & METHODS

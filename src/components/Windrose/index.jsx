@@ -5,7 +5,7 @@ import Ship from './Ship'
 import Sector from './Sector'
 import IntervalLabel from './IntervalLabel'
 import PropTypes from 'prop-types'
-import './index.css'
+import styled from 'styled-components'
 
 /**
  * Validate wind direction
@@ -47,6 +47,36 @@ function divideBySector (sectorCount, dirData, dirKey, spdData, spdKey, commonKe
 }
 
 /**
+ * Styled button component
+ */
+const Button = styled.button`
+  position: absolute;
+  top: 10px;
+  color: rgb(0, 0, 0);
+  background-color: white;
+  font-weight: bolder;
+  border: 1px solid black;
+  text-decoration: none;
+  padding: 0 5px;
+  transition-duration: 0.4s;
+`
+/**
+ * Styled select
+ */
+const Select = styled.select`
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 2px;
+`
+/**
+ * Styled container
+ */
+const Container = styled.div`
+  font-family: Roboto, "Open Sans", sans-serif;
+`
+
+/**
  * Draws a windrose for provided relative wind data
  */
 function Windrose (props) {
@@ -65,9 +95,9 @@ function Windrose (props) {
   const complilationSize = 260 / props.enlarge
 
   return (
-    <div>
+    <Container>
       {/* Selector for the number of sectors */}
-      <select
+      <Select
         title='Number of sectors'
         value={sectorCount}
         onChange={e => { setSectorCount(Number(e.target.value)) }}
@@ -77,15 +107,15 @@ function Windrose (props) {
             <option value={s}>{s}</option>
           </Fragment>
         ))}
-      </select>
-      <button
+      </Select>
+      <Button
         title='Show/hide legend'
         onClick={e => { setLegend(!legend) }}
         style={{
           left: props.size - 30
         }}
       >{legend ? '<<' : '>>'}
-      </button>
+      </Button>
       {/* Windrose SVG with optional legend */}
       <svg
         version='1.1'
@@ -132,7 +162,7 @@ function Windrose (props) {
         <use href='#tooltip' fill='black' />
         <use href='#tooltiptext' />
       </svg>
-    </div>
+    </Container>
   )
 }
 

@@ -1,16 +1,23 @@
 {
   "name": "fast-wind-rose",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "The FAST wind rose provides a visual representation of the relative wind.",
-  "main": "index.js",
+  "main": "build/Windrose.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phalkone/fast-wind-rose"
+  },
   "scripts": {
     "test": "jest",
     "start": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production",
     "lint": "eslint --cache --format codeframe --ext mjs,jsx,js src test"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "wind",
+    "react"
+  ],
+  "author": "Diodorus",
   "license": "MIT",
   "peerDependencies": {
     "prop-types": "^15.7.2",
@@ -32,5 +39,8 @@
     "webpack": "^4.46.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "styled-components": "^5.3.0"
   }
 }
