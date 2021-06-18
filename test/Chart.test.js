@@ -21,9 +21,8 @@ it('renders the correct number of lines', () => {
   act(() => {
     render(
       <Chart
-        sectorSize={30}
+        sectorCount={12}
         center={130}
-        radius={120}
       />, container)
   })
   expect(Array.from(container.childNodes).filter((el) => el.tagName === "LINE").length).toEqual(12)
@@ -33,9 +32,8 @@ it('renders the correct number of lines', () => {
   act(() => {
     render(
       <Chart
-        sectorSize={24}
+        sectorCount={15}
         center={130}
-        radius={120}
       />, container)
   })
   expect(Array.from(container.childNodes).filter((el) => el.tagName === "LINE").length).toEqual(15)
@@ -47,7 +45,6 @@ it('renders the correct number of circles', () => {
       <Chart
         sectorSize={30}
         center={130}
-        radius={120}
       />, container)
   })
   expect(Array.from(container.childNodes).filter((el) => el.tagName === "CIRCLE").length).toEqual(4)
