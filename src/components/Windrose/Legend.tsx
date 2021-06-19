@@ -1,11 +1,21 @@
-/* eslint-disable react/jsx-fragments */
 import React, { Fragment } from 'react'
-import PropTypes from 'prop-types'
+
+interface ILegend {
+  /**
+   * Size of chart (height/width + margins)
+   */
+  size: number,
+  /**
+   * Scale of speeds with the linked color. Example as follows:
+   *  { 0: 'rgb(60,95,156)', 5: 'rgb(94,131,188)' }
+   */
+  scale: { [n: number]: string }
+}
 
 /**
  * The legend displaying the used scale
  */
-function Legend (props) {
+export const Legend = (props: ILegend) => {
   const keys = Object.keys(props.scale)
   const length = keys.length
   const square = ((props.size - 20) / length) > 20 ? 20 : ((props.size - 20) / length)
@@ -13,7 +23,7 @@ function Legend (props) {
   const fontSize = square - 2
 
   return (
-    <Fragment>
+    <>
       {keys.map((speed, i) => (
         <Fragment key={speed}>
           {/* Color scale */}
@@ -44,20 +54,6 @@ function Legend (props) {
         fontSize={fontSize}
       >kts
       </text>
-    </Fragment>
+    </>
   )
 }
-
-Legend.propTypes = {
-  /**
-   * Size of chart (height/width + margins)
-   */
-  size: PropTypes.number,
-  /**
-   * Scale of speeds with the linked color. Example as follows:
-   *  { 0: 'rgb(60,95,156)', 5: 'rgb(94,131,188)' }
-   */
-  scale: PropTypes.object
-}
-
-export default Legend

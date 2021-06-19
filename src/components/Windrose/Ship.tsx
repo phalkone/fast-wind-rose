@@ -1,10 +1,16 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+
+interface IShip {
+  /**
+   * The center of the ship path. x and y coordinates are assumed to be the same.
+   */
+  center: number
+}
 
 /**
  * Outline of the ship
  */
-function Ship (props) {
+export const Ship = (props : IShip) => {
   return (
     <path
       d={`M ${props.center - 10} ${props.center + 15} H ${props.center + 10} ` +
@@ -19,12 +25,3 @@ function Ship (props) {
     />
   )
 }
-
-Ship.propTypes = {
-  /**
-   * The center of the ship path. x and y coordinates are assumed to be the same.
-   */
-  center: PropTypes.number
-}
-
-export default Ship

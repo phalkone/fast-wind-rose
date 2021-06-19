@@ -1,5 +1,17 @@
-const neutrino = require('neutrino');
-
-process.env.NODE_ENV = process.env.NODE_ENV || 'test';
-
-module.exports = neutrino().jest();
+module.exports = {
+  roots: [
+    '<rootDir>/test'
+  ],
+  transform: {
+    '^.+\\.tsx?$': 'ts-jest'
+  },
+  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$',
+  moduleFileExtensions: [
+    'ts',
+    'tsx',
+    'js',
+    'jsx',
+    'json',
+    'node'
+  ]
+}

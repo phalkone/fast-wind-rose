@@ -1,8 +1,7 @@
 import React from 'react'
 import { render, unmountComponentAtNode } from 'react-dom'
 import { act } from 'react-dom/test-utils'
-
-import Chart from '../src/components/Windrose/Chart'
+import { Chart } from '../src/components/Windrose/Chart'
 
 let container = null
 beforeEach(() => {
@@ -43,7 +42,7 @@ it('renders the correct number of circles', () => {
   act(() => {
     render(
       <Chart
-        sectorSize={30}
+        sectorCount={30}
         center={130}
       />, container)
   })

@@ -1,10 +1,28 @@
 import React, { Fragment } from 'react'
-import PropTypes from 'prop-types'
+
+interface IIntervalLabel {
+  /**
+   * Defines which sector is being drawn. 0 being the first sector.
+   */
+  sector: number,
+  /**
+   * Interval between data points specified in hours
+   */
+  interval: number,
+  /**
+   * Size of each sector in degrees
+   */
+  sectorSize: number,
+  /**
+   * The center of the sectors. x and y coordinates are assumed to be the same.
+   */
+  center: number
+}
 
 /**
  * Shows the interval of each sector
  */
-export default function IntervalLabel (props) {
+export const IntervalLabel = (props: IIntervalLabel) => {
   let radius = props.center - 8
   const sin = Math.sin(Math.PI / 180 * ((props.sectorSize - 2) / 2))
   const cos = Math.cos(Math.PI / 180 * ((props.sectorSize - 2) / 2))
@@ -46,23 +64,4 @@ export default function IntervalLabel (props) {
       </text>
     </>
   )
-}
-
-IntervalLabel.propTypes = {
-  /**
-   * Defines which sector is being drawn. 0 being the first sector.
-   */
-  sector: PropTypes.number,
-  /**
-   * Interval between data points specified in hours
-   */
-  interval: PropTypes.number,
-  /**
-   * Size of each sector in degrees
-   */
-  sectorSize: PropTypes.number,
-  /**
-   * The center of the sectors. x and y coordinates are assumed to be the same.
-   */
-  center: PropTypes.number
 }

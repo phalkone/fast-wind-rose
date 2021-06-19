@@ -1,13 +1,22 @@
-/* eslint-disable react/jsx-fragments */
 import React, { Fragment } from 'react'
-import PropTypes from 'prop-types'
+
+interface IChart {
+  /**
+   * The number of sectors
+   */
+  sectorCount: number,
+  /**
+   * The center of the chart. x and y coordinates are the same.
+   */
+  center: number
+}
 
 /**
  * The chart that can be divided into a specified number of sectors
  */
-function Chart (props) {
+export const Chart = (props: IChart) => {
   return (
-    <Fragment>
+    <>
       {/* Sector lines */}
       {[...new Array(props.sectorCount).keys()].map(i => (
         <Fragment key={i}>
@@ -37,19 +46,6 @@ function Chart (props) {
           />
         </Fragment>
       ))}
-    </Fragment>
+    </>
   )
 }
-
-Chart.propTypes = {
-  /**
-   * The number of sectors
-   */
-  sectorCount: PropTypes.number,
-  /**
-   * The center of the chart. x and y coordinates are the same.
-   */
-  center: PropTypes.number
-}
-
-export default Chart

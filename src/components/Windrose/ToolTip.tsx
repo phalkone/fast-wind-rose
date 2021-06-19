@@ -1,10 +1,28 @@
 import React, { Fragment } from 'react'
-import PropTypes from 'prop-types'
+
+interface IToolTip {
+  /**
+   * x coordinate of top left corner of tooltip
+   */
+  x: number,
+  /**
+   * y coordinate of top left corner of tooltip
+   */
+  y: number,
+  /**
+   * text of tooltip
+   */
+  text: [string, number],
+  /**
+   * Scale factor in y direction due to viewBox of SVG vs actual size of SVG.
+   */
+  factor: number
+}
 
 /**
  * Tooltip to show scale information on hovering
  */
-export default function ToolTip (props) {
+export default function ToolTip (props : IToolTip) {
   const tooltip = `${props.text[0]}kts: ${props.text[1].toFixed(1)}h`
   return (
     <>
@@ -29,23 +47,4 @@ export default function ToolTip (props) {
       </text>
     </>
   )
-}
-
-ToolTip.propTypes = {
-  /**
-   * x coordinate of top left corner of tooltip
-   */
-  x: PropTypes.number,
-  /**
-   * y coordinate of top left corner of tooltip
-   */
-  y: PropTypes.number,
-  /**
-   * text of tooltip
-   */
-  text: PropTypes.array,
-  /**
-   * Scale factor in y direction due to viewBox of SVG vs actual size of SVG.
-   */
-  factor: PropTypes.number
 }

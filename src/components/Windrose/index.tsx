@@ -1,17 +1,16 @@
 import React, { Fragment, useState } from 'react'
-import Legend from './Legend'
-import Chart from './Chart'
-import Ship from './Ship'
-import Sector from './Sector'
-import IntervalLabel from './IntervalLabel'
-import PropTypes from 'prop-types'
+import { Legend } from './Legend'
+import { Chart } from './Chart'
+import { Ship } from './Ship'
+import { Sector } from './Sector'
+import { IntervalLabel } from './IntervalLabel'
 import styled from 'styled-components'
 
 /**
  * Validate wind direction
  * @param {Number} dir Wind direction
  */
-function validateDir (dir) {
+function validateDir (dir: number) : boolean {
   return (typeof dir === 'number' && dir >= 0 && dir <= 360)
 }
 
@@ -19,7 +18,7 @@ function validateDir (dir) {
  * Validate wind speed
  * @param {Number} spd Wind speed
  */
-function validateSpd (spd) {
+function validateSpd (spd: number) : boolean {
   return (typeof spd === 'number' && spd >= 0 && spd <= 120)
 }
 
@@ -32,7 +31,8 @@ function validateSpd (spd) {
  * @param {String} spdKey Key indicating the value of the wind speed
  * @param {String} commonKey Key that is common between direction and speed
  */
-function divideBySector (sectorCount, dirData, dirKey, spdData, spdKey, commonKey) {
+function divideBySector (sectorCount: number, dirData: Array<object>, dirKey: string,
+  spdData: Array<object>, spdKey: string, commonKey: string) : Array<Array<number>> {
   const sectors = new Array(sectorCount).fill(null).map(() => [])
   for (let i = 0; i < dirData.length; i++) {
     if (validateDir(dirData[i][dirKey]) && validateSpd(spdData[i][spdKey]) &&
@@ -79,13 +79,67 @@ const Container = styled.div`
   font-family: Roboto, "Open Sans", sans-serif;
 `
 
+interface IWindrose {
+  /**
+   * Hide or display legend
+   */
+  legend: boolean,
+  /**
+   * Width/height of chart. Will be displayed in specified viewbox.
+   */
+  size: number,
+  /**
+   * Array with directional data for the wind
+   */
+  dirData: object[],
+  /**
+   * Array with speed data for the wind
+   */
+  spdData: object[],
+  /**
+   * Fixed interval between data points specified in hours. For example if
+   * data points are every 30 min, then value should be 0.5
+   */
+  interval: number,
+  /**
+   * Scale of speeds with the linked color. Example as follows:
+   *  { 0: 'rgb(60,95,156)', 5: 'rgb(94,131,188)' }
+   */
+  scale: { [n: number]: string },
+  /**
+   * Key for speed data
+   */
+  spdKey: string,
+  /**
+   * Key for directional data
+   */
+  dirKey: string,
+  /**
+   * Default number of sectors. Must be included in sectorArray.
+   */
+  sectorCount: number,
+  /**
+   * Scales the compilation scale against the viewbox. Choose a value lower
+   * than 1 to scale down and larger than 1 to scale up.
+   */
+  enlarge: number,
+  /**
+   * Array that defines the number of sectors the user can choose from.
+   */
+  sectorArray: number[],
+  /**
+   * Common key between direction and speed data
+   */
+  commonKey: string
+}
+
 /**
  * Draws a windrose for provided relative wind data
  */
-function Windrose (props) {
+const Windrose = (props: IWindrose) => {
   /* Use state to set the number of sectors and show/hide legend */
-  const [sectorCount, setSectorCount] = useState(props.sectorCount)
-  const [legend, setLegend] = useState(props.legend)
+  const [sectorCount, setSectorCount] = useState<number>(props.sectorCount)
+  const [legend, setLegend] = useState<boolean>(props.legend)
 
   /* Divide data points per sector */
   const sectors = divideBySector(sectorCount, props.dirData, props.dirKey,
@@ -163,66 +217,6 @@ function Windrose (props) {
       </svg>
     </Container>
   )
-}
-
-Windrose.propTypes = {
-  /**
-   * Hide or display legend
-   */
-  legend: PropTypes.bool,
-  /**
-   * Width/height of chart. Will be displayed in specified viewbox.
-   */
-  size: PropTypes.number,
-  /**
-   * Array with directional data for the wind
-   */
-  dirData: PropTypes.arrayOf(PropTypes.object),
-  /**
-   * Array with speed data for the wind
-   */
-  spdData: PropTypes.arrayOf(PropTypes.object),
-  /**
-   * Fixed interval between data points specified in hours. For example if
-   * data points are every 30 min, then value should be 0.5
-   */
-  interval: PropTypes.number,
-  /**
-   * Scale of speeds with the linked color. Example as follows:
-   *  { 0: 'rgb(60,95,156)', 5: 'rgb(94,131,188)' }
-   */
-  scale: PropTypes.object,
-  /**
-   * Key for speed data
-   */
-  spdKey: PropTypes.string,
-  /**
-   * Key for directional data
-   */
-  dirKey: PropTypes.string,
-  /**
-   * Default number of sectors. Must be included in sectorArray.
-   */
-  sectorCount: function (props, propName, componentName) {
-    if (!props.sectorArray.includes(props[propName])) {
-      return new Error(
-        `Invalid prop ${propName} supplied to ${componentName}. Validation failed.`
-      )
-    }
-  },
-  /**
-   * Scales the compilation scale against the viewbox. Choose a value lower
-   * than 1 to scale down and larger than 1 to scale up.
-   */
-  enlarge: PropTypes.number,
-  /**
-   * Array that defines the number of sectors the user can choose from.
-   */
-  sectorArray: PropTypes.arrayOf(PropTypes.number),
-  /**
-   * Common key between direction and speed data
-   */
-  commonKey: PropTypes.string
 }
 
 Windrose.defaultProps = {

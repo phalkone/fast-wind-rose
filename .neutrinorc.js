@@ -1,14 +1,38 @@
-const standard = require('@neutrinojs/standardjs');
+const typescript = require('neutrinojs-typescript');
 const reactComponents = require('@neutrinojs/react-components');
-const jest = require('@neutrinojs/jest');
 
 module.exports = {
   options: {
     root: __dirname,
   },
   use: [
-    standard(),
-    reactComponents(),
-    jest(),
+    typescript({
+      compilerOptions: {
+        target: 'es5',
+        lib: [
+          'dom',
+          'dom.iterable',
+          'esnext'
+        ],
+        allowJs: true,
+        skipLibCheck: true,
+        esModuleInterop: true,
+        strictNullChecks: true,
+        allowSyntheticDefaultImports: true,
+        strict: true,
+        forceConsistentCasingInFileNames: true,
+        module: 'esnext',
+        moduleResolution: 'node',
+        resolveJsonModule: true,
+        isolatedModules: true,
+        noEmit: true,
+        jsx: 'react',
+        downlevelIteration: true
+      },
+      include: [
+        'src'
+      ]
+    }),
+    reactComponents()
   ],
 };
