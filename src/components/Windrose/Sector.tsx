@@ -14,16 +14,16 @@ export const Sector = (props: ISector) => {
   const sin = Math.sin(Math.PI / 180 * (props.sectorSize / 2))
 
   /* Divide speeds as per specified scale in array */
+  let length = (props.speeds.length / props.max) * (props.center - 10)
   const scale = [...Object.keys(props.scale)].map(Number)
   const speedCategories = []
-  let length = props.barLength
   for (let i = scale.length - 1; i >= 0; i--) {
     let prev = i === scale.length - 1 ? Infinity : scale[i + 1]
     const count = props.speeds.filter((val) => val >= scale[i] && val < prev).length
     if (prev === Infinity) prev = scale[scale.length - 1]
     if (count) {
       speedCategories.push([scale[i], length, `${scale[i]}-${prev}`, count * props.interval])
-      length -= count * props.unit
+      length -= count * ((props.center - 10) / props.max)
     }
   }
 

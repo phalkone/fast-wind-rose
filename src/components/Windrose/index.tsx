@@ -53,6 +53,7 @@ function divideBySector (sectorCount: number, dirData: Array<object>, dirKey: st
 
 /**
  * Draws a windrose for provided relative wind data
+ * @param {IWindrose} props Properties of the Windrose as descibed by IWindrose.
  */
 const Windrose = (props: IWindrose) => {
   /* Use state to set the number of sectors and show/hide legend */
@@ -68,6 +69,7 @@ const Windrose = (props: IWindrose) => {
 
   /* Set the viewBox size compared to the compilation size */
   const compilationSize = 260 / props.enlarge
+  const center = compilationSize / 2
 
   return (
     <div className='windrose-container'>
@@ -101,37 +103,35 @@ const Windrose = (props: IWindrose) => {
         height={props.size}
       >
         {/* Draw legend only if option is given as prop */}
-        {legend && <Legend size={compilationSize} scale={props.scale} />}
+        {legend && <Legend center={center} scale={props.scale} />}
         <Chart
           sectorSize={360 / sectorCount}
-          center={compilationSize / 2}
+          center={center}
         />
         {/* Draw each sector with interval label */}
         {sectors.map((speeds, i) => (
           <Fragment key={i}>
-            {speeds.length &&
-              <IntervalLabel
-                sector={i}
-                interval={props.interval}
-                speeds={speeds}
-                sectorSize={360 / sectorCount}
-                center={compilationSize / 2}
-              />}
-            {speeds.length &&
-              <Sector
-                sector={i}
-                speeds={speeds}
-                center={compilationSize / 2}
-                sectorSize={360 / sectorCount}
-                barLength={(speeds.length / max) * (compilationSize / 2 - 10)}
-                unit={(compilationSize / 2 - 10) / max}
-                scale={props.scale}
-                interval={props.interval}
-                size={props.size}
-              />}
-          </Fragment>))}
+            <IntervalLabel
+              sector={i}
+              interval={props.interval}
+              speeds={speeds}
+              sectorSize={360 / sectorCount}
+              center={center}
+            />
+            <Sector
+              sector={i}
+              speeds={speeds}
+              center={center}
+              sectorSize={360 / sectorCount}
+              max={max}
+              scale={props.scale}
+              interval={props.interval}
+              size={props.size}
+            />
+          </Fragment>
+        ))}
         {/* Draw ship outline */}
-        <Ship center={compilationSize / 2} />
+        <Ship center={center} />
         {/* Ensures that tooltips are always on top */}
         <use href='#tooltip' fill='black' />
         <use href='#tooltiptext' />
