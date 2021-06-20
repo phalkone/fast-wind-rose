@@ -1,11 +1,5 @@
 import React from 'react'
-
-interface IShip {
-  /**
-   * The center of the ship path. x and y coordinates are assumed to be the same.
-   */
-  center: number
-}
+import type { IShip } from '../../types/Windrose'
 
 /**
  * Outline of the ship

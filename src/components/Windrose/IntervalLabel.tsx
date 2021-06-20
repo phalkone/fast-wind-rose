@@ -1,23 +1,5 @@
 import React, { Fragment } from 'react'
-
-interface IIntervalLabel {
-  /**
-   * Defines which sector is being drawn. 0 being the first sector.
-   */
-  sector: number,
-  /**
-   * Interval between data points specified in hours
-   */
-  interval: number,
-  /**
-   * Size of each sector in degrees
-   */
-  sectorSize: number,
-  /**
-   * The center of the sectors. x and y coordinates are assumed to be the same.
-   */
-  center: number
-}
+import type { IIntervalLabel } from '../../types/Windrose'
 
 /**
  * Shows the interval of each sector
@@ -59,7 +41,7 @@ export const IntervalLabel = (props: IIntervalLabel) => {
           href={`#curved${props.sector}`}
           startOffset='50%'
         >
-          {`${props.interval.toFixed(1)}h`}
+          {`${(props.interval * props.speeds.length).toFixed(1)}h`}
         </textPath>
       </text>
     </>

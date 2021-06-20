@@ -1,4 +1,4 @@
-const mockData = {
+export const mockData = {
   metrics: [{
     tag: 'wind_speed_rel',
     aggregation: { interval: 'PT1H', method: 'avg' },
@@ -58,5 +58,3 @@ const mockData = {
       { timestamp: '2021-05-31T10:00:00Z', value: 345.2, interpolated: true }]
   }]
 }
-
-export default mockData

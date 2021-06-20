@@ -1,5 +1,6 @@
 const typescript = require('neutrinojs-typescript');
 const reactComponents = require('@neutrinojs/react-components');
+const jest = require('@neutrinojs/jest');
 
 module.exports = {
   options: {
@@ -41,6 +42,7 @@ module.exports = {
           { loader: require.resolve('sass-loader'), useId: 'sass' }
         ]
       }
-    })
+    }),
+    jest()
   ],
 };

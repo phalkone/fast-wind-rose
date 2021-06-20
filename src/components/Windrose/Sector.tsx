@@ -1,47 +1,6 @@
 import React, { Fragment, useState } from 'react'
 import ToolTip from './ToolTip'
-
-interface ISector {
-  /**
-   * Defines which sector is being drawn. 0 being the first sector.
-   */
-  sector: number,
-  /**
-   * Size of each sector in degrees
-   */
-  sectorSize: number,
-  /**
-   * Total bar length of this sector. The sector with the largest interval will
-   * have a bar length equal to the radius.
-   */
-  barLength: number,
-  /**
-   * Array with the speeds that are part of this sector
-   */
-  speeds: number[],
-  /**
-   * Defines the bar length of 1 unit of interval.
-   */
-  unit: number,
-  /**
-   * The center of the sectors. x and y coordinates are assumed to be the same.
-   */
-  center: number,
-  /**
-   * Scale of speeds with the linked color. Example as follows:
-   *  { 0: 'rgb(60,95,156)', 5: 'rgb(94,131,188)' }
-   */
-  scale: { [n: number]: string },
-  /**
-   * Interval between data points specified in hours
-   */
-  interval: number,
-  /**
-   * Factor defining ratio between actual size and compilation size for correct
-   * placement of tooltip.
-   */
-  factor: number
-}
+import type { ISector } from '../../types/Windrose'
 
 /**
  * Colored sectors as per the specified scale.
@@ -91,7 +50,7 @@ export const Sector = (props: ISector) => {
           x={entered[0]}
           y={entered[1]}
           text={entered[2]}
-          factor={props.factor}
+          factor={props.size / (props.center * 2)}
         />}
     </>
   )

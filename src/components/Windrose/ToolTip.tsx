@@ -1,23 +1,5 @@
 import React, { Fragment } from 'react'
-
-interface IToolTip {
-  /**
-   * x coordinate of top left corner of tooltip
-   */
-  x: number,
-  /**
-   * y coordinate of top left corner of tooltip
-   */
-  y: number,
-  /**
-   * text of tooltip
-   */
-  text: [string, number],
-  /**
-   * Scale factor in y direction due to viewBox of SVG vs actual size of SVG.
-   */
-  factor: number
-}
+import type { IToolTip } from '../../types/Windrose'
 
 /**
  * Tooltip to show scale information on hovering

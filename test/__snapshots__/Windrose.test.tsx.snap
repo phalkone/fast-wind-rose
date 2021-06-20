@@ -1,0 +1,626 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render a windrose 1`] = `
+<div
+  className="windrose-container"
+>
+  <select
+    className="windrose-select"
+    onChange={[Function]}
+    title="Number of sectors"
+    value={12}
+  >
+    <option
+      value={4}
+    >
+      4
+    </option>
+    <option
+      value={8}
+    >
+      8
+    </option>
+    <option
+      value={12}
+    >
+      12
+    </option>
+    <option
+      value={16}
+    >
+      16
+    </option>
+    <option
+      value={24}
+    >
+      24
+    </option>
+    <option
+      value={32}
+    >
+      32
+    </option>
+    <option
+      value={36}
+    >
+      36
+    </option>
+  </select>
+  <button
+    className="windrose-button"
+    onClick={[Function]}
+    style={
+      Object {
+        "left": 470,
+      }
+    }
+    title="Show/hide legend"
+  >
+    &lt;&lt;
+  </button>
+  <svg
+    height={500}
+    version="1.1"
+    viewBox="0 0 325 260"
+    width={625}
+  >
+    <rect
+      fill="rgb(60,95,156)"
+      height={20}
+      stroke="grey"
+      strokeWidth="1"
+      width={20}
+      x={270}
+      y={220}
+    />
+    <text
+      fill="black"
+      fontSize={18}
+      x={295}
+      y={245}
+    >
+      0
+    </text>
+    <rect
+      fill="rgb(94,131,188)"
+      height={20}
+      stroke="grey"
+      strokeWidth="1"
+      width={20}
+      x={270}
+      y={200}
+    />
+    <text
+      fill="black"
+      fontSize={18}
+      x={295}
+      y={225}
+    >
+      5
+    </text>
+    <rect
+      fill="rgb(143,180,232)"
+      height={20}
+      stroke="grey"
+      strokeWidth="1"
+      width={20}
+      x={270}
+      y={180}
+    />
+    <text
+      fill="black"
+      fontSize={18}
+      x={295}
+      y={205}
+    >
+      10
+    </text>
+    <rect
+      fill="rgb(174,203,214)"
+      height={20}
+      stroke="grey"
+      strokeWidth="1"
+      width={20}
+      x={270}
+      y={160}
+    />
+    <text
+      fill="black"
+      fontSize={18}
+      x={295}
+      y={185}
+    >
+      15
+    </text>
+    <rect
+      fill="rgb(220,226,220)"
+      height={20}
+      stroke="grey"
+      strokeWidth="1"
+      width={20}
+      x={270}
+      y={140}
+    />
+    <text
+      fill="black"
+      fontSize={18}
+      x={295}
+      y={165}
+    >
+      20
+    </text>
+    <rect
+      fill="rgb(251,233,94)"
+      height={20}
+      stroke="grey"
+      strokeWidth="1"
+      width={20}
+      x={270}
+      y={120}
+    />
+    <text
+      fill="black"
+      fontSize={18}
+      x={295}
+      y={145}
+    >
+      25
+    </text>
+    <rect
+      fill="rgb(252,195,67)"
+      height={20}
+      stroke="grey"
+      strokeWidth="1"
+      width={20}
+      x={270}
+      y={100}
+    />
+    <text
+      fill="black"
+      fontSize={18}
+      x={295}
+      y={125}
+    >
+      30
+    </text>
+    <rect
+      fill="rgb(245,136,42)"
+      height={20}
+      stroke="grey"
+      strokeWidth="1"
+      width={20}
+      x={270}
+      y={80}
+    />
+    <text
+      fill="black"
+      fontSize={18}
+      x={295}
+      y={105}
+    >
+      35
+    </text>
+    <rect
+      fill="rgb(242,103,33)"
+      height={20}
+      stroke="grey"
+      strokeWidth="1"
+      width={20}
+      x={270}
+      y={60}
+    />
+    <text
+      fill="black"
+      fontSize={18}
+      x={295}
+      y={85}
+    >
+      40
+    </text>
+    <rect
+      fill="rgb(243,63,29)"
+      height={20}
+      stroke="grey"
+      strokeWidth="1"
+      width={20}
+      x={270}
+      y={40}
+    />
+    <text
+      fill="black"
+      fontSize={18}
+      x={295}
+      y={65}
+    >
+      45
+    </text>
+    <rect
+      fill="rgb(244,36,27)"
+      height={20}
+      stroke="grey"
+      strokeWidth="1"
+      width={20}
+      x={270}
+      y={20}
+    />
+    <text
+      fill="black"
+      fontSize={18}
+      x={295}
+      y={45}
+    >
+      50&lt;
+    </text>
+    <text
+      fill="black"
+      fontSize={18}
+      x={295}
+      y={25}
+    >
+      kts
+    </text>
+    <line
+      stroke="grey"
+      strokeWidth="1"
+      transform="rotate(15, 130,130)"
+      x1={130}
+      x2={130}
+      y1={10}
+      y2={130}
+    />
+    <line
+      stroke="grey"
+      strokeWidth="1"
+      transform="rotate(45, 130,130)"
+      x1={130}
+      x2={130}
+      y1={10}
+      y2={130}
+    />
+    <line
+      stroke="grey"
+      strokeWidth="1"
+      transform="rotate(75, 130,130)"
+      x1={130}
+      x2={130}
+      y1={10}
+      y2={130}
+    />
+    <line
+      stroke="grey"
+      strokeWidth="1"
+      transform="rotate(105, 130,130)"
+      x1={130}
+      x2={130}
+      y1={10}
+      y2={130}
+    />
+    <line
+      stroke="grey"
+      strokeWidth="1"
+      transform="rotate(135, 130,130)"
+      x1={130}
+      x2={130}
+      y1={10}
+      y2={130}
+    />
+    <line
+      stroke="grey"
+      strokeWidth="1"
+      transform="rotate(165, 130,130)"
+      x1={130}
+      x2={130}
+      y1={10}
+      y2={130}
+    />
+    <line
+      stroke="grey"
+      strokeWidth="1"
+      transform="rotate(195, 130,130)"
+      x1={130}
+      x2={130}
+      y1={10}
+      y2={130}
+    />
+    <line
+      stroke="grey"
+      strokeWidth="1"
+      transform="rotate(225, 130,130)"
+      x1={130}
+      x2={130}
+      y1={10}
+      y2={130}
+    />
+    <line
+      stroke="grey"
+      strokeWidth="1"
+      transform="rotate(255, 130,130)"
+      x1={130}
+      x2={130}
+      y1={10}
+      y2={130}
+    />
+    <line
+      stroke="grey"
+      strokeWidth="1"
+      transform="rotate(285, 130,130)"
+      x1={130}
+      x2={130}
+      y1={10}
+      y2={130}
+    />
+    <line
+      stroke="grey"
+      strokeWidth="1"
+      transform="rotate(315, 130,130)"
+      x1={130}
+      x2={130}
+      y1={10}
+      y2={130}
+    />
+    <line
+      stroke="grey"
+      strokeWidth="1"
+      transform="rotate(345, 130,130)"
+      x1={130}
+      x2={130}
+      y1={10}
+      y2={130}
+    />
+    <circle
+      cx={130}
+      cy={130}
+      fill="none"
+      opacity={1}
+      r={120}
+      stroke="grey"
+      strokeWidth="1"
+    />
+    <circle
+      cx={130}
+      cy={130}
+      fill="none"
+      opacity={0.5}
+      r={90}
+      stroke="grey"
+      strokeWidth="1"
+    />
+    <circle
+      cx={130}
+      cy={130}
+      fill="none"
+      opacity={0.5}
+      r={60}
+      stroke="grey"
+      strokeWidth="1"
+    />
+    <circle
+      cx={130}
+      cy={130}
+      fill="none"
+      opacity={0.5}
+      r={30}
+      stroke="grey"
+      strokeWidth="1"
+    />
+    <path
+      d="M 100.48552873684054 11.623921394328434 A 122 122, 0, 0, 1, 159.51447126315946 11.623921394328434"
+      fill="none"
+      id="curved0"
+      transform="rotate(0, 130, 130)"
+    />
+    <text
+      fill="black"
+      fontSize="11px"
+      textAnchor="middle"
+    >
+      <textPath
+        href="#curved0"
+        startOffset="50%"
+      >
+        8.0h
+      </textPath>
+    </text>
+    <path
+      d="M 161.0582854123025 14.088900845311798 A 120 120, 0, 0, 0, 98.9417145876975 14.088900845311798 L 130 130 Z"
+      fill="rgb(243,63,29)"
+      onMouseMove={[Function]}
+      onMouseOut={[Function]}
+      transform="rotate(0, 130, 130)"
+    />
+    <path
+      d="M 157.17599973576466 28.57778823964783 A 105 105, 0, 0, 0, 102.82400026423532 28.57778823964783 L 130 130 Z"
+      fill="rgb(245,136,42)"
+      onMouseMove={[Function]}
+      onMouseOut={[Function]}
+      transform="rotate(0, 130, 130)"
+    />
+    <path
+      d="M 141.64685702961344 86.53333781699192 A 45 45, 0, 0, 0, 118.35314297038657 86.53333781699192 L 130 130 Z"
+      fill="rgb(143,180,232)"
+      onMouseMove={[Function]}
+      onMouseOut={[Function]}
+      transform="rotate(0, 130, 130)"
+    />
+    0
+    0
+    0
+    0
+    0
+    0
+    0
+    0
+    0
+    0
+    0
+    0
+    <path
+      d="M 161.4498464279568 3.8615555841204525 A 130 130, 0, 0, 0, 98.5501535720432 3.8615555841204525"
+      fill="none"
+      id="curved7"
+      transform="rotate(210, 130, 130)"
+    />
+    <text
+      fill="black"
+      fontSize="11px"
+      textAnchor="middle"
+    >
+      <textPath
+        href="#curved7"
+        startOffset="50%"
+      >
+        1.0h
+      </textPath>
+    </text>
+    <path
+      d="M 133.8822856765378 115.51111260566398 A 15 15, 0, 0, 0, 126.1177143234622 115.51111260566398 L 130 130 Z"
+      fill="rgb(174,203,214)"
+      onMouseMove={[Function]}
+      onMouseOut={[Function]}
+      transform="rotate(210, 130, 130)"
+    />
+    <path
+      d="M 161.4498464279568 3.8615555841204525 A 130 130, 0, 0, 0, 98.5501535720432 3.8615555841204525"
+      fill="none"
+      id="curved8"
+      transform="rotate(240, 130, 130)"
+    />
+    <text
+      fill="black"
+      fontSize="11px"
+      textAnchor="middle"
+    >
+      <textPath
+        href="#curved8"
+        startOffset="50%"
+      >
+        1.0h
+      </textPath>
+    </text>
+    <path
+      d="M 133.8822856765378 115.51111260566398 A 15 15, 0, 0, 0, 126.1177143234622 115.51111260566398 L 130 130 Z"
+      fill="rgb(174,203,214)"
+      onMouseMove={[Function]}
+      onMouseOut={[Function]}
+      transform="rotate(240, 130, 130)"
+    />
+    <path
+      d="M 100.48552873684054 11.623921394328434 A 122 122, 0, 0, 1, 159.51447126315946 11.623921394328434"
+      fill="none"
+      id="curved9"
+      transform="rotate(270, 130, 130)"
+    />
+    <text
+      fill="black"
+      fontSize="11px"
+      textAnchor="middle"
+    >
+      <textPath
+        href="#curved9"
+        startOffset="50%"
+      >
+        3.0h
+      </textPath>
+    </text>
+    <path
+      d="M 141.64685702961344 86.53333781699192 A 45 45, 0, 0, 0, 118.35314297038657 86.53333781699192 L 130 130 Z"
+      fill="rgb(174,203,214)"
+      onMouseMove={[Function]}
+      onMouseOut={[Function]}
+      transform="rotate(270, 130, 130)"
+    />
+    <path
+      d="M 100.48552873684054 11.623921394328434 A 122 122, 0, 0, 1, 159.51447126315946 11.623921394328434"
+      fill="none"
+      id="curved10"
+      transform="rotate(300, 130, 130)"
+    />
+    <text
+      fill="black"
+      fontSize="11px"
+      textAnchor="middle"
+    >
+      <textPath
+        href="#curved10"
+        startOffset="50%"
+      >
+        5.0h
+      </textPath>
+    </text>
+    <path
+      d="M 149.41142838268905 57.55556302831988 A 75 75, 0, 0, 0, 110.58857161731095 57.55556302831988 L 130 130 Z"
+      fill="rgb(244,36,27)"
+      onMouseMove={[Function]}
+      onMouseOut={[Function]}
+      transform="rotate(300, 130, 130)"
+    />
+    <path
+      d="M 145.52914270615125 72.0444504226559 A 60 60, 0, 0, 0, 114.47085729384875 72.0444504226559 L 130 130 Z"
+      fill="rgb(174,203,214)"
+      onMouseMove={[Function]}
+      onMouseOut={[Function]}
+      transform="rotate(300, 130, 130)"
+    />
+    <path
+      d="M 137.7645713530756 101.02222521132795 A 30 30, 0, 0, 0, 122.23542864692438 101.02222521132795 L 130 130 Z"
+      fill="rgb(143,180,232)"
+      onMouseMove={[Function]}
+      onMouseOut={[Function]}
+      transform="rotate(300, 130, 130)"
+    />
+    <path
+      d="M 100.48552873684054 11.623921394328434 A 122 122, 0, 0, 1, 159.51447126315946 11.623921394328434"
+      fill="none"
+      id="curved11"
+      transform="rotate(330, 130, 130)"
+    />
+    <text
+      fill="black"
+      fontSize="11px"
+      textAnchor="middle"
+    >
+      <textPath
+        href="#curved11"
+        startOffset="50%"
+      >
+        6.0h
+      </textPath>
+    </text>
+    <path
+      d="M 153.29371405922686 43.06667563398385 A 90 90, 0, 0, 0, 106.70628594077314 43.06667563398385 L 130 130 Z"
+      fill="rgb(174,203,214)"
+      onMouseMove={[Function]}
+      onMouseOut={[Function]}
+      transform="rotate(330, 130, 130)"
+    />
+    <path
+      d="M 141.64685702961344 86.53333781699192 A 45 45, 0, 0, 0, 118.35314297038657 86.53333781699192 L 130 130 Z"
+      fill="rgb(143,180,232)"
+      onMouseMove={[Function]}
+      onMouseOut={[Function]}
+      transform="rotate(330, 130, 130)"
+    />
+    <path
+      d="M 133.8822856765378 115.51111260566398 A 15 15, 0, 0, 0, 126.1177143234622 115.51111260566398 L 130 130 Z"
+      fill="rgb(60,95,156)"
+      onMouseMove={[Function]}
+      onMouseOut={[Function]}
+      transform="rotate(330, 130, 130)"
+    />
+    <path
+      d="M 120 145 H 140 C 140 145 140 110 130 110 C 120 110 120 145 120 145 Z"
+      fill="none"
+      opacity="0.7"
+      stroke="grey"
+      strokeWidth="3"
+    />
+    <use
+      fill="black"
+      href="#tooltip"
+    />
+    <use
+      href="#tooltiptext"
+    />
+  </svg>
+</div>
+`;

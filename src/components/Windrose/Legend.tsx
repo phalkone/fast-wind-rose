@@ -1,16 +1,5 @@
 import React, { Fragment } from 'react'
-
-interface ILegend {
-  /**
-   * Size of chart (height/width + margins)
-   */
-  size: number,
-  /**
-   * Scale of speeds with the linked color. Example as follows:
-   *  { 0: 'rgb(60,95,156)', 5: 'rgb(94,131,188)' }
-   */
-  scale: { [n: number]: string }
-}
+import type { ILegend } from '../../types/Windrose'
 
 /**
  * The legend displaying the used scale

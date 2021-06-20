@@ -4,7 +4,8 @@ import { Chart } from './Chart'
 import { Ship } from './Ship'
 import { Sector } from './Sector'
 import { IntervalLabel } from './IntervalLabel'
-import '../../themes/components/Windrose.scss'
+import '../../themes/Windrose.scss'
+import type { IWindrose } from '../../types/Windrose'
 
 /**
  * Validate wind direction
@@ -34,70 +35,20 @@ function validateSpd (spd: number) : boolean {
 function divideBySector (sectorCount: number, dirData: Array<object>, dirKey: string,
   spdData: Array<object>, spdKey: string, commonKey: string) : Array<Array<number>> {
   const sectors = new Array(sectorCount).fill(null).map(() => [])
+
   for (let i = 0; i < dirData.length; i++) {
-    if (validateDir(dirData[i][dirKey]) && validateSpd(spdData[i][spdKey]) &&
+    const speed : number = spdData[i][spdKey]
+    const direction : number = dirData[i][dirKey]
+
+    if (validateDir(direction) && validateSpd(speed) &&
       dirData[i][commonKey] === spdData[i][commonKey]) {
-      let dir = dirData[i][dirKey] + (180 / sectorCount)
+      let dir = direction + (180 / sectorCount)
       if (dir >= 360) dir -= 360
       const cat = Math.floor((dir * sectorCount) / 360)
-      sectors[cat].push(spdData[i][spdKey])
+      sectors[cat].push(speed)
     }
   }
   return sectors
-}
-
-interface IWindrose {
-  /**
-   * Hide or display legend
-   */
-  legend: boolean,
-  /**
-   * Width/height of chart. Will be displayed in specified viewbox.
-   */
-  size: number,
-  /**
-   * Array with directional data for the wind
-   */
-  dirData: object[],
-  /**
-   * Array with speed data for the wind
-   */
-  spdData: object[],
-  /**
-   * Fixed interval between data points specified in hours. For example if
-   * data points are every 30 min, then value should be 0.5
-   */
-  interval: number,
-  /**
-   * Scale of speeds with the linked color. Example as follows:
-   *  { 0: 'rgb(60,95,156)', 5: 'rgb(94,131,188)' }
-   */
-  scale: { [n: number]: string },
-  /**
-   * Key for speed data
-   */
-  spdKey: string,
-  /**
-   * Key for directional data
-   */
-  dirKey: string,
-  /**
-   * Default number of sectors. Must be included in sectorArray.
-   */
-  sectorCount: number,
-  /**
-   * Scales the compilation scale against the viewbox. Choose a value lower
-   * than 1 to scale down and larger than 1 to scale up.
-   */
-  enlarge: number,
-  /**
-   * Array that defines the number of sectors the user can choose from.
-   */
-  sectorArray: number[],
-  /**
-   * Common key between direction and speed data
-   */
-  commonKey: string
 }
 
 /**
@@ -152,7 +103,7 @@ const Windrose = (props: IWindrose) => {
         {/* Draw legend only if option is given as prop */}
         {legend && <Legend size={compilationSize} scale={props.scale} />}
         <Chart
-          sectorCount={sectorCount}
+          sectorSize={360 / sectorCount}
           center={compilationSize / 2}
         />
         {/* Draw each sector with interval label */}
@@ -161,7 +112,8 @@ const Windrose = (props: IWindrose) => {
             {speeds.length &&
               <IntervalLabel
                 sector={i}
-                interval={props.interval * speeds.length}
+                interval={props.interval}
+                speeds={speeds}
                 sectorSize={360 / sectorCount}
                 center={compilationSize / 2}
               />}
@@ -175,7 +127,7 @@ const Windrose = (props: IWindrose) => {
                 unit={(compilationSize / 2 - 10) / max}
                 scale={props.scale}
                 interval={props.interval}
-                factor={props.size / compilationSize}
+                size={props.size}
               />}
           </Fragment>))}
         {/* Draw ship outline */}

@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 import Windrose from './components/Windrose'
-import mockData from './mocks'
+import { mockData } from './mocks'
 
 render(
   <Windrose
