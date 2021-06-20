@@ -4,7 +4,7 @@ import { Chart } from './Chart'
 import { Ship } from './Ship'
 import { Sector } from './Sector'
 import { IntervalLabel } from './IntervalLabel'
-import styled from 'styled-components'
+import '../../themes/components/Windrose.scss'
 
 /**
  * Validate wind direction
@@ -45,39 +45,6 @@ function divideBySector (sectorCount: number, dirData: Array<object>, dirKey: st
   }
   return sectors
 }
-
-/**
- * Styled button component
- */
-const Button = styled.button`
-  position: absolute;
-  top: 10px;
-  color: rgb(0, 0, 0);
-  background-color: white;
-  font-weight: bolder;
-  border: 1px solid black;
-  text-decoration: none;
-  padding: 0 5px;
-  transition-duration: 0.4s;
-  &:hover {
-    background-color: rgb(203, 203, 203);
-  }
-`
-/**
- * Styled select
- */
-const Select = styled.select`
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  padding: 2px;
-`
-/**
- * Styled container
- */
-const Container = styled.div`
-  font-family: Roboto, "Open Sans", sans-serif;
-`
 
 interface IWindrose {
   /**
@@ -152,11 +119,12 @@ const Windrose = (props: IWindrose) => {
   const compilationSize = 260 / props.enlarge
 
   return (
-    <Container>
+    <div className='windrose-container'>
       {/* Selector for the number of sectors */}
-      <Select
+      <select
         title='Number of sectors'
         value={sectorCount}
+        className='windrose-select'
         onChange={e => { setSectorCount(Number(e.target.value)) }}
       >
         {props.sectorArray.map(s => (
@@ -164,15 +132,16 @@ const Windrose = (props: IWindrose) => {
             <option value={s}>{s}</option>
           </Fragment>
         ))}
-      </Select>
-      <Button
+      </select>
+      <button
         title='Show/hide legend'
+        className='windrose-button'
         onClick={e => { setLegend(!legend) }}
         style={{
           left: props.size - 30
         }}
       >{legend ? '<<' : '>>'}
-      </Button>
+      </button>
       {/* Windrose SVG with optional legend */}
       <svg
         version='1.1'
@@ -215,7 +184,7 @@ const Windrose = (props: IWindrose) => {
         <use href='#tooltip' fill='black' />
         <use href='#tooltiptext' />
       </svg>
-    </Container>
+    </div>
   )
 }
 

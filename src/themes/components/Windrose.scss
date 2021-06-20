@@ -1,0 +1,26 @@
+.windrose-button{
+  position: absolute;
+  top: 10px;
+  color: rgb(0, 0, 0);
+  background-color: white;
+  font-weight: bolder;
+  border: 1px solid black;
+  text-decoration: none;
+  padding: 0 5px;
+  transition-duration: 0.4s;
+}
+ 
+.windrose-button:hover {
+  background-color: rgb(203, 203, 203);
+}
+
+.windrose-select {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 2px;
+}
+
+.windrose-container {
+  font-family: Roboto, "Open Sans", sans-serif;
+}

@@ -33,6 +33,14 @@ module.exports = {
         'src'
       ]
     }),
-    reactComponents()
+    reactComponents({
+      style : {
+        test : /\.s[ca]ss$/i,
+        modulesTest: /\.modules.s[ca]ss$/i,
+        loaders: [
+          { loader: require.resolve('sass-loader'), useId: 'sass' }
+        ]
+      }
+    })
   ],
 };
