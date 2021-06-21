@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import type { IToolTip } from '../../types/Windrose'
+import type { IToolTip } from '../../types/Windrose.types'
 
 /**
  * Tooltip to show scale information on hovering

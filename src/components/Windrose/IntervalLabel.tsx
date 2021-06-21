@@ -1,5 +1,5 @@
 import React, { Fragment, useContext } from 'react'
-import type { ISector } from '../../types/Windrose'
+import type { ISector } from '../../types/Windrose.types'
 import { WindroseContext } from '.'
 
 /**

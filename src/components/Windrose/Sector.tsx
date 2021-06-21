@@ -1,7 +1,8 @@
 import React, { Fragment, useContext, useState } from 'react'
 import { ToolTip } from './ToolTip'
 import { IntervalLabel } from './IntervalLabel'
-import type { ISector } from '../../types/Windrose'
+import { divideBySpeed } from '../../utils/Windrose.util'
+import type { ISector } from '../../types/Windrose.types'
 import { WindroseContext } from '.'
 
 /**
@@ -17,18 +18,8 @@ export const Sector = (props: ISector) => {
   const sin = Math.sin(Math.PI / 180 * (context.sectorSize / 2))
 
   /* Divide speeds as per specified scale in array */
-  let length = (props.speeds.length / context.max) * (context.center - 10)
-  const scale = [...Object.keys(context.scale)].map(Number)
-  const speedCategories = []
-  for (let i = scale.length - 1; i >= 0; i--) {
-    let prev = i === scale.length - 1 ? Infinity : scale[i + 1]
-    const count = props.speeds.filter((val) => val >= scale[i] && val < prev).length
-    if (prev === Infinity) prev = scale[scale.length - 1]
-    if (count) {
-      speedCategories.push([scale[i], length, `${scale[i]}-${prev}`, count * context.interval])
-      length -= count * ((context.center - 10) / context.max)
-    }
-  }
+  const speedCategories = divideBySpeed(props.speeds, context.scale, context.max,
+    context.center, context.interval)
 
   return (
     <>

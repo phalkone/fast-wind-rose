@@ -3,52 +3,9 @@ import { Legend } from './Legend'
 import { Chart } from './Chart'
 import { Ship } from './Ship'
 import { Sector } from './Sector'
-import type { IWindrose, IWindroseContext } from '../../types/Windrose'
+import { divideBySector } from '../../utils/Windrose.util'
+import type { IWindrose, IWindroseContext } from '../../types/Windrose.types'
 import '../../themes/Windrose.scss'
-
-/**
- * Validate wind direction
- * @param {Number} dir Wind direction
- */
-function validateDir (dir: number) : boolean {
-  return (typeof dir === 'number' && dir >= 0 && dir <= 360)
-}
-
-/**
- * Validate wind speed
- * @param {Number} spd Wind speed
- */
-function validateSpd (spd: number) : boolean {
-  return (typeof spd === 'number' && spd >= 0 && spd <= 120)
-}
-
-/**
- * Divides data into sectors
- * @param {Number} sectorCount Number of sectors
- * @param {Array} dirData Array of wind direction data objects
- * @param {String} dirKey Key indicating the value of the wind direction
- * @param {Array} spdData Array of wind speed data objects
- * @param {String} spdKey Key indicating the value of the wind speed
- * @param {String} commonKey Key that is common between direction and speed
- */
-function divideBySector (sectorCount: number, dirData: Array<object>, dirKey: string,
-  spdData: Array<object>, spdKey: string, commonKey: string) : Array<Array<number>> {
-  const sectors = new Array(sectorCount).fill(null).map(() => [])
-
-  for (let i = 0; i < dirData.length; i++) {
-    const speed : number = spdData[i][spdKey]
-    const direction : number = dirData[i][dirKey]
-
-    if (validateDir(direction) && validateSpd(speed) &&
-      dirData[i][commonKey] === spdData[i][commonKey]) {
-      let dir = direction + (180 / sectorCount)
-      if (dir >= 360) dir -= 360
-      const cat = Math.floor((dir * sectorCount) / 360)
-      sectors[cat].push(speed)
-    }
-  }
-  return sectors
-}
 
 /**
  * Draws a windrose for provided relative wind data
