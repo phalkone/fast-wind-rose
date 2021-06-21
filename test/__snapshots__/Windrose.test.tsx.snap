@@ -404,24 +404,6 @@ exports[`Render a windrose 1`] = `
       strokeWidth="1"
     />
     <path
-      d="M 100.48552873684054 11.623921394328434 A 122 122, 0, 0, 1, 159.51447126315946 11.623921394328434"
-      fill="none"
-      id="curved0"
-      transform="rotate(0, 130, 130)"
-    />
-    <text
-      fill="black"
-      fontSize="11px"
-      textAnchor="middle"
-    >
-      <textPath
-        href="#curved0"
-        startOffset="50%"
-      >
-        8.0h
-      </textPath>
-    </text>
-    <path
       d="M 161.0582854123025 14.088900845311798 A 120 120, 0, 0, 0, 98.9417145876975 14.088900845311798 L 130 130 Z"
       fill="rgb(243,63,29)"
       onMouseMove={[Function]}
@@ -442,18 +424,37 @@ exports[`Render a windrose 1`] = `
       onMouseOut={[Function]}
       transform="rotate(0, 130, 130)"
     />
+    <path
+      d="M 100.48552873684054 11.623921394328434 A 122 122, 0, 0, 1, 159.51447126315946 11.623921394328434"
+      fill="none"
+      id="curved0"
+      transform="rotate(0, 130, 130)"
+    />
+    <text
+      fill="black"
+      fontSize="11px"
+      textAnchor="middle"
+    >
+      <textPath
+        href="#curved0"
+        startOffset="50%"
+      >
+        8.0h
+      </textPath>
+    </text>
     0
     0
     0
     0
     0
     0
-    0
-    0
-    0
-    0
-    0
-    0
+    <path
+      d="M 133.8822856765378 115.51111260566398 A 15 15, 0, 0, 0, 126.1177143234622 115.51111260566398 L 130 130 Z"
+      fill="rgb(174,203,214)"
+      onMouseMove={[Function]}
+      onMouseOut={[Function]}
+      transform="rotate(210, 130, 130)"
+    />
     <path
       d="M 161.4498464279568 3.8615555841204525 A 130 130, 0, 0, 0, 98.5501535720432 3.8615555841204525"
       fill="none"
@@ -477,7 +478,7 @@ exports[`Render a windrose 1`] = `
       fill="rgb(174,203,214)"
       onMouseMove={[Function]}
       onMouseOut={[Function]}
-      transform="rotate(210, 130, 130)"
+      transform="rotate(240, 130, 130)"
     />
     <path
       d="M 161.4498464279568 3.8615555841204525 A 130 130, 0, 0, 0, 98.5501535720432 3.8615555841204525"
@@ -498,11 +499,11 @@ exports[`Render a windrose 1`] = `
       </textPath>
     </text>
     <path
-      d="M 133.8822856765378 115.51111260566398 A 15 15, 0, 0, 0, 126.1177143234622 115.51111260566398 L 130 130 Z"
+      d="M 141.64685702961344 86.53333781699192 A 45 45, 0, 0, 0, 118.35314297038657 86.53333781699192 L 130 130 Z"
       fill="rgb(174,203,214)"
       onMouseMove={[Function]}
       onMouseOut={[Function]}
-      transform="rotate(240, 130, 130)"
+      transform="rotate(270, 130, 130)"
     />
     <path
       d="M 100.48552873684054 11.623921394328434 A 122 122, 0, 0, 1, 159.51447126315946 11.623921394328434"
@@ -520,31 +521,6 @@ exports[`Render a windrose 1`] = `
         startOffset="50%"
       >
         3.0h
-      </textPath>
-    </text>
-    <path
-      d="M 141.64685702961344 86.53333781699192 A 45 45, 0, 0, 0, 118.35314297038657 86.53333781699192 L 130 130 Z"
-      fill="rgb(174,203,214)"
-      onMouseMove={[Function]}
-      onMouseOut={[Function]}
-      transform="rotate(270, 130, 130)"
-    />
-    <path
-      d="M 100.48552873684054 11.623921394328434 A 122 122, 0, 0, 1, 159.51447126315946 11.623921394328434"
-      fill="none"
-      id="curved10"
-      transform="rotate(300, 130, 130)"
-    />
-    <text
-      fill="black"
-      fontSize="11px"
-      textAnchor="middle"
-    >
-      <textPath
-        href="#curved10"
-        startOffset="50%"
-      >
-        5.0h
       </textPath>
     </text>
     <path
@@ -571,8 +547,8 @@ exports[`Render a windrose 1`] = `
     <path
       d="M 100.48552873684054 11.623921394328434 A 122 122, 0, 0, 1, 159.51447126315946 11.623921394328434"
       fill="none"
-      id="curved11"
-      transform="rotate(330, 130, 130)"
+      id="curved10"
+      transform="rotate(300, 130, 130)"
     />
     <text
       fill="black"
@@ -580,10 +556,10 @@ exports[`Render a windrose 1`] = `
       textAnchor="middle"
     >
       <textPath
-        href="#curved11"
+        href="#curved10"
         startOffset="50%"
       >
-        6.0h
+        5.0h
       </textPath>
     </text>
     <path
@@ -607,6 +583,24 @@ exports[`Render a windrose 1`] = `
       onMouseOut={[Function]}
       transform="rotate(330, 130, 130)"
     />
+    <path
+      d="M 100.48552873684054 11.623921394328434 A 122 122, 0, 0, 1, 159.51447126315946 11.623921394328434"
+      fill="none"
+      id="curved11"
+      transform="rotate(330, 130, 130)"
+    />
+    <text
+      fill="black"
+      fontSize="11px"
+      textAnchor="middle"
+    >
+      <textPath
+        href="#curved11"
+        startOffset="50%"
+      >
+        6.0h
+      </textPath>
+    </text>
     <path
       d="M 120 145 H 140 C 140 145 140 110 130 110 C 120 110 120 145 120 145 Z"
       fill="none"

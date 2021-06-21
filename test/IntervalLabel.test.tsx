@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { createContext } from 'react'
 import { render, unmountComponentAtNode } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 import { IntervalLabel } from '../src/components/Windrose/IntervalLabel'
 import renderer from 'react-test-renderer'
+
+const WindroseContext = createContext({ sectorSize: 30, center: 130, interval: 1 })
 
 let container = null
 beforeEach(() => {
@@ -20,24 +22,25 @@ afterEach(() => {
 it('it shows the correct label', () => {
   act(() => {
     render(
-      <IntervalLabel
-        sector={0}
-        interval={1}
-        sectorSize={30}
-        center={130}
-      />, container)
+      <WindroseContext.Provider value={{ sectorSize: 30, center: 130, interval: 1 }}>
+        <IntervalLabel
+          sector={0}
+          speeds={[10, 10, 10]}
+        />
+      </WindroseContext.Provider>
+      , container)
   })
-  expect(container.textContent).toEqual('1.0h')
+  expect(container.textContent).toEqual('3.0h')
 })
 
 test('Render an interval label', () => {
   const comp = renderer.create(
-    <IntervalLabel
+    <WindroseContext.Provider value={{ sectorSize: 30, center: 130, interval: 1 }}>
+      <IntervalLabel
         sector={0}
-        interval={1}
-        sectorSize={30}
-        center={130}
+        speeds={[10, 10, 10]}
       />
+    </WindroseContext.Provider>
   )
   const tree = comp.toJSON()
   expect(tree).toMatchSnapshot()

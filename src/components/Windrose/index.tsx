@@ -23,6 +23,11 @@ const Windrose = (props: IWindrose) => {
   /* Set the viewBox size compared to the compilation size */
   const compilationSize = 260 / props.enlarge
 
+  /* Add sectorCount if not part of sectorArray */
+  if (!props.sectorArray.includes(sectorCount)) {
+    props.sectorArray.push(sectorCount)
+  }
+
   return (
     <div className='windrose-container'>
       {/* Selector for the number of sectors */}
