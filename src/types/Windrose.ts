@@ -1,26 +1,29 @@
-export interface IWindrose {
+interface IWindroseCommon {
+  /**
+   * Width/height of chart. Will be displayed in specified viewbox.
+   */
+   size: number,
+   /**
+    * Fixed interval between data points specified in hours. For example if
+    * data points are every 30 min, then value should be 0.5
+    */
+  interval: number,
+   /**
+    * Scale of speeds with the linked color. Example as follows:
+    *  { 0: 'rgb(60,95,156)', 5: 'rgb(94,131,188)' }
+    */
+  scale: { [n: number]: string },
+}
+
+export interface IWindrose extends IWindroseCommon {
   /**
    * Hide or display legend
    */
   legend: boolean,
   /**
-   * Width/height of chart. Will be displayed in specified viewbox.
-   */
-  size: number,
-  /**
    * Default number of sectors. Must be included in sectorArray.
    */
   sectorCount: number,
-  /**
-   * Fixed interval between data points specified in hours. For example if
-   * data points are every 30 min, then value should be 0.5
-   */
-  interval: number,
-  /**
-   * Scale of speeds with the linked color. Example as follows:
-   *  { 0: 'rgb(60,95,156)', 5: 'rgb(94,131,188)' }
-   */
-  scale: { [n: number]: string },
   /**
    * Array with directional data for the wind
    */
@@ -52,52 +55,30 @@ export interface IWindrose {
   commonKey: string
 }
 
-export interface IShip {
+export interface IWindroseContext extends IWindroseCommon {
   /**
    * The center of the ship path. x and y coordinates are assumed to be the same.
    */
-  center: number
-}
-
-export interface ILegend extends IShip {
+  center: number,
   /**
-   * Scale of speeds with the linked color. Example as follows:
-   *  { 0: 'rgb(60,95,156)', 5: 'rgb(94,131,188)' }
+   * The size of each Sector
    */
-  scale: { [n: number]: string }
-}
-
-export interface IChart extends IShip {
+  sectorSize: number,
   /**
-   * The number of sectors
+   * Maximum number of data points in a certain sector.
    */
-  sectorSize: number
+  max: number
 }
 
-export interface IIntervalLabel extends IChart {
+export interface ISector {
   /**
    * Defines which sector is being drawn. 0 being the first sector.
    */
   sector: number,
   /**
-   * Interval between data points specified in hours
-   */
-  interval: number,
-  /**
    * Array with the speeds that are part of this sector
    */
   speeds: number[]
-}
-
-export interface ISector extends IIntervalLabel, ILegend {
-  /**
-   * Maximum number of data points in a certain sector.
-   */
-  max: number,
-  /**
-   * Width/height of chart. Will be displayed in specified viewbox.
-   */
-  size: number
 }
 
 export interface IToolTip {

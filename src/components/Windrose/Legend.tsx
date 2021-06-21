@@ -1,12 +1,13 @@
-import React, { Fragment } from 'react'
-import type { ILegend } from '../../types/Windrose'
+import React, { Fragment, useContext } from 'react'
+import { WindroseContext } from '.'
 
 /**
  * The legend displaying the used scale
  */
-export const Legend = (props: ILegend) => {
-  const size = props.center * 2
-  const keys = Object.keys(props.scale)
+export const Legend = () => {
+  const context = useContext(WindroseContext)
+  const size = context.center * 2
+  const keys = Object.keys(context.scale)
   const length = keys.length
   const square = ((size - 20) / length) > 20 ? 20 : ((size - 20) / length)
   const margin = (size - (length * square)) / 2
@@ -24,7 +25,7 @@ export const Legend = (props: ILegend) => {
             height={square}
             stroke='grey'
             strokeWidth='1'
-            fill={props.scale[speed]}
+            fill={context.scale[speed]}
           />
           {/* Speed scale */}
           <text

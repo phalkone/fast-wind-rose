@@ -1,11 +1,11 @@
-import React, { Fragment, useState } from 'react'
+import React, { createContext, Fragment, useState } from 'react'
 import { Legend } from './Legend'
 import { Chart } from './Chart'
 import { Ship } from './Ship'
 import { Sector } from './Sector'
 import { IntervalLabel } from './IntervalLabel'
+import type { IWindrose, IWindroseContext } from '../../types/Windrose'
 import '../../themes/Windrose.scss'
-import type { IWindrose } from '../../types/Windrose'
 
 /**
  * Validate wind direction
@@ -64,12 +64,8 @@ const Windrose = (props: IWindrose) => {
   const sectors = divideBySector(sectorCount, props.dirData, props.dirKey,
     props.spdData, props.spdKey, props.commonKey)
 
-  /* The sector with maximum number of data points defines the scale */
-  const max = sectors.map((el) => el.length).sort((a, b) => b - a)[0]
-
   /* Set the viewBox size compared to the compilation size */
   const compilationSize = 260 / props.enlarge
-  const center = compilationSize / 2
 
   return (
     <div className='windrose-container'>
@@ -102,36 +98,33 @@ const Windrose = (props: IWindrose) => {
         width={props.size + (legend ? 65 * (props.size / compilationSize) : 0)}
         height={props.size}
       >
-        {/* Draw legend only if option is given as prop */}
-        {legend && <Legend center={center} scale={props.scale} />}
-        <Chart
-          sectorSize={360 / sectorCount}
-          center={center}
-        />
-        {/* Draw each sector with interval label */}
-        {sectors.map((speeds, i) => (
-          <Fragment key={i}>
-            <IntervalLabel
-              sector={i}
-              interval={props.interval}
-              speeds={speeds}
-              sectorSize={360 / sectorCount}
-              center={center}
-            />
-            <Sector
-              sector={i}
-              speeds={speeds}
-              center={center}
-              sectorSize={360 / sectorCount}
-              max={max}
-              scale={props.scale}
-              interval={props.interval}
-              size={props.size}
-            />
-          </Fragment>
-        ))}
-        {/* Draw ship outline */}
-        <Ship center={center} />
+        <WindroseContext.Provider value={{
+          center: compilationSize / 2,
+          scale: props.scale,
+          sectorSize: 360 / sectorCount,
+          interval: props.interval,
+          size: props.size,
+          max: sectors.map((el) => el.length).sort((a, b) => b - a)[0]
+        }}>
+          {/* Draw legend only if option is given as prop */}
+          {legend && <Legend/>}
+          <Chart/>
+          {/* Draw each sector with interval label */}
+          {sectors.map((speeds, i) => (
+            speeds.length && <Fragment key={i}>
+               <IntervalLabel
+                sector={i}
+                speeds={speeds}
+              />
+              <Sector
+                sector={i}
+                speeds={speeds}
+              />
+            </Fragment>
+          ))}
+          {/* Draw ship outline */}
+          <Ship/>
+        </WindroseContext.Provider>
         {/* Ensures that tooltips are always on top */}
         <use href='#tooltip' fill='black' />
         <use href='#tooltiptext' />
@@ -163,5 +156,16 @@ Windrose.defaultProps = {
     50: 'rgb(244,36,27)'
   }
 }
+
+const defaultContext : IWindroseContext = {
+  center: 130,
+  scale: Windrose.defaultProps.scale,
+  sectorSize: 30,
+  interval: 1,
+  size: 260,
+  max: 24
+}
+
+export const WindroseContext = createContext(defaultContext)
 
 export default Windrose

@@ -1,17 +1,18 @@
-import React from 'react'
-import type { IShip } from '../../types/Windrose'
+import React, { useContext } from 'react'
+import { WindroseContext } from '.'
 
 /**
  * Outline of the ship
  */
-export const Ship = (props : IShip) => {
+export const Ship = () => {
+  const context = useContext(WindroseContext)
   return (
     <path
-      d={`M ${props.center - 10} ${props.center + 15} H ${props.center + 10} ` +
-         `C ${props.center + 10} ${props.center + 15} ${props.center + 10} ` +
-         `${props.center - 20} ${props.center} ${props.center - 20} ` +
-         `C ${props.center - 10} ${props.center - 20} ${props.center - 10} ` +
-         `${props.center + 15} ${props.center - 10} ${props.center + 15} Z`}
+      d={`M ${context.center - 10} ${context.center + 15} H ${context.center + 10} ` +
+         `C ${context.center + 10} ${context.center + 15} ${context.center + 10} ` +
+         `${context.center - 20} ${context.center} ${context.center - 20} ` +
+         `C ${context.center - 10} ${context.center - 20} ${context.center - 10} ` +
+         `${context.center + 15} ${context.center - 10} ${context.center + 15} Z`}
       fill='none'
       stroke='grey'
       strokeWidth='3'
