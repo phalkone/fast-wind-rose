@@ -1,5 +1,6 @@
 import React, { Fragment, useContext, useState } from 'react'
-import ToolTip from './ToolTip'
+import { ToolTip } from './ToolTip'
+import { IntervalLabel } from './IntervalLabel'
 import type { ISector } from '../../types/Windrose'
 import { WindroseContext } from '.'
 
@@ -46,6 +47,10 @@ export const Sector = (props: ISector) => {
           />
         </Fragment>
       ))}
+      <IntervalLabel
+          sector={props.sector}
+          speeds={props.speeds}
+      />
       {/* Display tooltip when mouse cursor entered the sector */}
       {entered &&
         <ToolTip

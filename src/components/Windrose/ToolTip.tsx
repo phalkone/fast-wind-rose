@@ -4,7 +4,7 @@ import type { IToolTip } from '../../types/Windrose'
 /**
  * Tooltip to show scale information on hovering
  */
-export default function ToolTip (props : IToolTip) {
+export const ToolTip = (props : IToolTip) => {
   const tooltip = `${props.text[0]}kts: ${props.text[1].toFixed(1)}h`
   return (
     <>

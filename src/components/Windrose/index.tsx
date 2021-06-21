@@ -3,7 +3,6 @@ import { Legend } from './Legend'
 import { Chart } from './Chart'
 import { Ship } from './Ship'
 import { Sector } from './Sector'
-import { IntervalLabel } from './IntervalLabel'
 import type { IWindrose, IWindroseContext } from '../../types/Windrose'
 import '../../themes/Windrose.scss'
 
@@ -112,10 +111,6 @@ const Windrose = (props: IWindrose) => {
           {/* Draw each sector with interval label */}
           {sectors.map((speeds, i) => (
             speeds.length && <Fragment key={i}>
-               <IntervalLabel
-                sector={i}
-                speeds={speeds}
-              />
               <Sector
                 sector={i}
                 speeds={speeds}
