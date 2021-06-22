@@ -11,4 +11,5 @@ render(
     sectorCount={12}
     size={500}
     legend
+    ship
   />, document.getElementById('root'))

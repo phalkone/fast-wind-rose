@@ -66,6 +66,7 @@ scale     | object | Shape | Scale of speeds with the linked color. Example as f
 sectorArray | number[] | [4, 8, 12, 16, 24, 32, 36] | Array that defines the number of sectors the user can choose from.
 sectorCount | custom | 12 | Default number of sectors. Must be included in sectorArray.
 size       | number | 260 | Width/height of chart. Will be displayed in specified viewbox.
+ship       | bool | | Determines if the ship outline is shown.
 
 ## License
 

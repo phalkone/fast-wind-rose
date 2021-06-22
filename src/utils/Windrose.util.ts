@@ -24,9 +24,10 @@ const validateSpd = (spd: number) : boolean => {
  * @param {String} commonKey Key that is common between direction and speed
  * @returns 2D Array with speeds sorted by sector.
  */
-export const divideBySector = (sectorCount: number, dirData: Array<object>, dirKey: string,
-  spdData: Array<object>, spdKey: string, commonKey: string) : Array<Array<number>> => {
-  const sectors = new Array(sectorCount).fill(null).map(() => [])
+export const divideBySector = (sectorCount: number, dirData: Array<{[s: string] : any }>,
+  dirKey: string, spdData: Array<{[s: string] : any }>, spdKey: string, commonKey: string)
+  : Array<Array<number>> => {
+  const sectors : Array<Array<number>> = new Array(sectorCount).fill(null).map(() => [])
 
   for (let i = 0; i < dirData.length; i++) {
     const speed : number = spdData[i][spdKey]
@@ -56,7 +57,7 @@ export const divideBySpeed = (speeds : number[], scaleInput : { [n: number]: str
   max: number, center: number, interval : number) : Array<[number, number, string, number]> => {
   let length = (speeds.length / max) * (center - 10)
   const scale = [...Object.keys(scaleInput)].map(Number)
-  const speedCategories = []
+  const speedCategories : Array<[number, number, string, number]> = []
   for (let i = scale.length - 1; i >= 0; i--) {
     let prev = i === scale.length - 1 ? Infinity : scale[i + 1]
     const count = speeds.filter((val) => val >= scale[i] && val < prev).length

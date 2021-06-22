@@ -21,5 +21,15 @@ module.exports = {
   ],
   rules: {
     'no-use-before-define': 'off'
-  }
+  },
+  overrides: [
+    {
+      files: [
+        '**/*.test.tsx'
+      ],
+      env: {
+        jest: true
+      }
+    }
+  ]
 }

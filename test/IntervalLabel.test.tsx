@@ -6,7 +6,7 @@ import renderer from 'react-test-renderer'
 
 const WindroseContext = createContext({ sectorSize: 30, center: 130, interval: 1 })
 
-let container = null
+let container : HTMLElement
 beforeEach(() => {
   container = document.createElement('svg')
   container.setAttribute('viewBox', '0 0 325 260')
@@ -16,7 +16,6 @@ beforeEach(() => {
 afterEach(() => {
   unmountComponentAtNode(container)
   container.remove()
-  container = null
 })
 
 it('it shows the correct label', () => {

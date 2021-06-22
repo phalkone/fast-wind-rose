@@ -19,7 +19,11 @@ export interface IWindrose extends IWindroseCommon {
   /**
    * Hide or display legend
    */
-  legend: boolean,
+  legend?: boolean,
+    /**
+   * Hide or display ship outline
+   */
+  ship?: boolean,
   /**
    * Default number of sectors. Must be included in sectorArray.
    */

@@ -11,7 +11,7 @@ import { WindroseContext } from '.'
 export const Sector = (props: ISector) => {
   const context = useContext(WindroseContext)
   /* State used for displaying tooltip. Displayed when mouse enters sector. */
-  const [entered, setEntered] = useState<boolean | [number, number, [string, number]]>(false)
+  const [entered, setEntered] = useState<[number, number, [string, number]]>([-1, 0, ['', 0]])
 
   /* Constants to avoid recalculation */
   const cos = Math.cos(Math.PI / 180 * (context.sectorSize / 2))
@@ -34,7 +34,7 @@ export const Sector = (props: ISector) => {
             transform={`rotate(${props.sector * context.sectorSize}, ` +
                      `${context.center}, ${context.center})`}
             onMouseMove={(e) => setEntered([e.clientX, e.clientY, [count[2], count[3]]])}
-            onMouseOut={() => setEntered(false)}
+            onMouseOut={() => setEntered([-1, 0, ['', 0]])}
           />
         </Fragment>
       ))}
@@ -43,7 +43,7 @@ export const Sector = (props: ISector) => {
           speeds={props.speeds}
       />
       {/* Display tooltip when mouse cursor entered the sector */}
-      {entered &&
+      {entered[0] !== -1 &&
         <ToolTip
           x={entered[0]}
           y={entered[1]}

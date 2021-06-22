@@ -6,7 +6,7 @@ import renderer from 'react-test-renderer'
 
 const WindroseContext = createContext({ sectorSize: 30, center: 130 })
 
-let container = null
+let container : HTMLElement
 beforeEach(() => {
   container = document.createElement('svg')
   container.setAttribute('viewBox', '0 0 325 260')
@@ -16,7 +16,6 @@ beforeEach(() => {
 afterEach(() => {
   unmountComponentAtNode(container)
   container.remove()
-  container = null
 })
 
 it('renders the correct number of lines', () => {
@@ -27,7 +26,7 @@ it('renders the correct number of lines', () => {
       </WindroseContext.Provider>
       , container)
   })
-  expect(Array.from(container.childNodes).filter((el : Element) => el.tagName === 'LINE').length).toEqual(12)
+  expect(Array.from(container.children).filter((el : Element) => el.tagName === 'LINE').length).toEqual(12)
 })
 
 it('renders the correct number of circles', () => {
@@ -38,7 +37,7 @@ it('renders the correct number of circles', () => {
       </WindroseContext.Provider>
       , container)
   })
-  expect(Array.from(container.childNodes).filter((el : Element) => el.tagName === 'CIRCLE').length).toEqual(4)
+  expect(Array.from(container.children).filter((el: Element) => el.tagName === 'CIRCLE').length).toEqual(4)
 })
 
 test('render a chart', () => {

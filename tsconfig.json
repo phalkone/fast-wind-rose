@@ -3,6 +3,10 @@
  */
 {
   "compilerOptions": {
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
     "importsNotUsedAsValues": "error",
     "target": "esnext",
     "module": "esnext",

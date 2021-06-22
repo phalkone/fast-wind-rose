@@ -14,7 +14,7 @@ import '../../themes/Windrose.scss'
 const Windrose = (props: IWindrose) => {
   /* Use state to set the number of sectors and show/hide legend */
   const [sectorCount, setSectorCount] = useState<number>(props.sectorCount)
-  const [legend, setLegend] = useState<boolean>(props.legend)
+  const [legend, setLegend] = useState<boolean | undefined>(props.legend)
 
   /* Divide data points per sector */
   const sectors = divideBySector(sectorCount, props.dirData, props.dirKey,
@@ -80,7 +80,7 @@ const Windrose = (props: IWindrose) => {
             </Fragment>
           ))}
           {/* Draw ship outline */}
-          <Ship/>
+          {props.ship && <Ship/>}
         </WindroseContext.Provider>
         {/* Ensures that tooltips are always on top */}
         <use href='#tooltip' fill='black' />

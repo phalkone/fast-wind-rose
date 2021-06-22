@@ -7,7 +7,7 @@ import { WindroseContext } from '.'
 export const Legend = () => {
   const context = useContext(WindroseContext)
   const size = context.center * 2
-  const keys = Object.keys(context.scale)
+  const keys = Object.keys(context.scale).map(Number)
   const length = keys.length
   const square = ((size - 20) / length) > 20 ? 20 : ((size - 20) / length)
   const margin = (size - (length * square)) / 2

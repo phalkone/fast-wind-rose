@@ -1,11 +1,10 @@
 import React from 'react'
-import { render, unmountComponentAtNode } from 'react-dom'
-import { act } from 'react-dom/test-utils'
+import { unmountComponentAtNode } from 'react-dom'
 import { mockData } from '../src/mocks'
 import renderer from 'react-test-renderer'
 import Windrose from '../src/components/Windrose'
 
-let container = null
+let container : HTMLElement
 beforeEach(() => {
   container = document.createElement('div')
   document.body.appendChild(container)
@@ -14,7 +13,6 @@ beforeEach(() => {
 afterEach(() => {
   unmountComponentAtNode(container)
   container.remove()
-  container = null
 })
 
 test('Render a windrose', () => {
@@ -26,6 +24,7 @@ test('Render a windrose', () => {
       sectorCount={12}
       size={500}
       legend
+      ship
     />
   )
   const tree = comp.toJSON()

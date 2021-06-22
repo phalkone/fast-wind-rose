@@ -7,33 +7,14 @@ module.exports = {
     root: __dirname,
   },
   use: [
-    typescript({
+    typescript({ tsconfig: {
       compilerOptions: {
-        target: 'es5',
-        lib: [
-          'dom',
-          'dom.iterable',
-          'esnext'
-        ],
         allowJs: true,
         skipLibCheck: true,
-        esModuleInterop: true,
-        strictNullChecks: true,
-        allowSyntheticDefaultImports: true,
         strict: true,
-        forceConsistentCasingInFileNames: true,
-        module: 'esnext',
-        moduleResolution: 'node',
-        resolveJsonModule: true,
-        isolatedModules: true,
-        noEmit: true,
-        jsx: 'react',
-        downlevelIteration: true
-      },
-      include: [
-        'src'
-      ]
-    }),
+        forceConsistentCasingInFileNames: true
+      }
+    }}),
     reactComponents({
       style : {
         test : /\.s[ca]ss$/i,
