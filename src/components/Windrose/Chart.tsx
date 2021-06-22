@@ -19,7 +19,7 @@ export const Chart = () => {
             stroke='grey'
             strokeWidth='1'
             transform={`rotate(${(0.5 + i) * (context.sectorSize)},` +
-                       ` ${context.center},${context.center})`}
+                       `${context.center},${context.center})`}
           />
         </Fragment>
       ))}

@@ -5,7 +5,7 @@ Array [
   <line
     stroke="grey"
     strokeWidth="1"
-    transform="rotate(15, 130,130)"
+    transform="rotate(15,130,130)"
     x1={130}
     x2={130}
     y1={10}
@@ -14,7 +14,7 @@ Array [
   <line
     stroke="grey"
     strokeWidth="1"
-    transform="rotate(45, 130,130)"
+    transform="rotate(45,130,130)"
     x1={130}
     x2={130}
     y1={10}
@@ -23,7 +23,7 @@ Array [
   <line
     stroke="grey"
     strokeWidth="1"
-    transform="rotate(75, 130,130)"
+    transform="rotate(75,130,130)"
     x1={130}
     x2={130}
     y1={10}
@@ -32,7 +32,7 @@ Array [
   <line
     stroke="grey"
     strokeWidth="1"
-    transform="rotate(105, 130,130)"
+    transform="rotate(105,130,130)"
     x1={130}
     x2={130}
     y1={10}
@@ -41,7 +41,7 @@ Array [
   <line
     stroke="grey"
     strokeWidth="1"
-    transform="rotate(135, 130,130)"
+    transform="rotate(135,130,130)"
     x1={130}
     x2={130}
     y1={10}
@@ -50,7 +50,7 @@ Array [
   <line
     stroke="grey"
     strokeWidth="1"
-    transform="rotate(165, 130,130)"
+    transform="rotate(165,130,130)"
     x1={130}
     x2={130}
     y1={10}
@@ -59,7 +59,7 @@ Array [
   <line
     stroke="grey"
     strokeWidth="1"
-    transform="rotate(195, 130,130)"
+    transform="rotate(195,130,130)"
     x1={130}
     x2={130}
     y1={10}
@@ -68,7 +68,7 @@ Array [
   <line
     stroke="grey"
     strokeWidth="1"
-    transform="rotate(225, 130,130)"
+    transform="rotate(225,130,130)"
     x1={130}
     x2={130}
     y1={10}
@@ -77,7 +77,7 @@ Array [
   <line
     stroke="grey"
     strokeWidth="1"
-    transform="rotate(255, 130,130)"
+    transform="rotate(255,130,130)"
     x1={130}
     x2={130}
     y1={10}
@@ -86,7 +86,7 @@ Array [
   <line
     stroke="grey"
     strokeWidth="1"
-    transform="rotate(285, 130,130)"
+    transform="rotate(285,130,130)"
     x1={130}
     x2={130}
     y1={10}
@@ -95,7 +95,7 @@ Array [
   <line
     stroke="grey"
     strokeWidth="1"
-    transform="rotate(315, 130,130)"
+    transform="rotate(315,130,130)"
     x1={130}
     x2={130}
     y1={10}
@@ -104,7 +104,7 @@ Array [
   <line
     stroke="grey"
     strokeWidth="1"
-    transform="rotate(345, 130,130)"
+    transform="rotate(345,130,130)"
     x1={130}
     x2={130}
     y1={10}

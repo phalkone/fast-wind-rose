@@ -2,17 +2,17 @@ interface IWindroseCommon {
   /**
    * Width/height of chart. Will be displayed in specified viewbox.
    */
-   size: number,
+   size?: number,
    /**
     * Fixed interval between data points specified in hours. For example if
     * data points are every 30 min, then value should be 0.5
     */
-  interval: number,
+  interval?: number,
    /**
     * Scale of speeds with the linked color. Example as follows:
     *  { 0: 'rgb(60,95,156)', 5: 'rgb(94,131,188)' }
     */
-  scale: { [n: number]: string },
+  scale?: { [n: number]: string },
 }
 
 export interface IWindrose extends IWindroseCommon {
@@ -27,7 +27,7 @@ export interface IWindrose extends IWindroseCommon {
   /**
    * Default number of sectors. Must be included in sectorArray.
    */
-  sectorCount: number,
+  sectorCount?: number,
   /**
    * Array with directional data for the wind
    */
@@ -48,11 +48,11 @@ export interface IWindrose extends IWindroseCommon {
    * Scales the compilation scale against the viewbox. Choose a value lower
    * than 1 to scale down and larger than 1 to scale up.
    */
-  enlarge: number,
+  enlarge?: number,
   /**
    * Array that defines the number of sectors the user can choose from.
    */
-  sectorArray: number[],
+  sectorArray?: number[],
   /**
    * Common key between direction and speed data
    */
@@ -71,7 +71,7 @@ export interface IWindroseContext extends IWindroseCommon {
   /**
    * Maximum number of data points in a certain sector.
    */
-  max: number
+  max?: number
 }
 
 export interface ISector {
