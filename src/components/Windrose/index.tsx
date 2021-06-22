@@ -58,6 +58,7 @@ const Windrose = (props: IWindrose) => {
         viewBox={`0 0 ${compilationSize + (legend ? 65 : 0)} ${compilationSize}`}
         width={props.size + (legend ? 65 * (props.size / compilationSize) : 0)}
         height={props.size}
+        className='windrose'
       >
         <WindroseContext.Provider value={{
           center: compilationSize / 2,

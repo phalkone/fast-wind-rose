@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, unmountComponentAtNode } from 'react-dom'
 import { act } from 'react-dom/test-utils'
-import { IntervalLabel } from '../src/components/Windrose/IntervalLabel'
+import { Legend } from '../src/components/Windrose/Legend'
 import { WindroseContext } from '../src/components/Windrose'
 import type { IWindroseContext } from '../src/types/Windrose.types'
 import renderer from 'react-test-renderer'
@@ -39,61 +39,64 @@ const context : IWindroseContext = {
   max: 24
 }
 
-it('shows the correct label', () => {
+it('renders the correct number of text elements', () => {
   act(() => {
     render(
       <WindroseContext.Provider value={ context }>
-        <IntervalLabel
-          sector={0}
-          speeds={[10, 10, 10]}
-        />
+        <Legend/>
       </WindroseContext.Provider>
       , container)
   })
-  expect(container.textContent).toEqual('3.0h')
+  expect(Array.from(container.children).filter((el : Element) => el.tagName === 'TEXT').length).toEqual(12)
 })
 
-it('has the correct rotation', () => {
+it('renders the correct number of rectangle elements', () => {
   act(() => {
     render(
       <WindroseContext.Provider value={ context }>
-        <IntervalLabel
-          sector={5}
-          speeds={[10, 10, 10]}
-        />
+        <Legend/>
       </WindroseContext.Provider>
       , container)
   })
-  const rotation = Array.from(container.children)
-    .filter((el : Element) => el.tagName === 'PATH')
-    .map((el: Element) => el.getAttribute('transform'))
-  expect(rotation).toEqual(['rotate(150, 130, 130)'])
+  expect(Array.from(container.children).filter((el : Element) => el.tagName === 'RECT').length).toEqual(11)
 })
 
-it('does not show upside down', () => {
+it('fills the colors of the rectangles as per scale', () => {
   act(() => {
     render(
       <WindroseContext.Provider value={ context }>
-        <IntervalLabel
-          sector={5}
-          speeds={[10, 10, 10]}
-        />
+        <Legend/>
       </WindroseContext.Provider>
       , container)
   })
-  const rotation = Array.from(container.children)
-    .filter((el : Element) => el.tagName === 'PATH')
-    .map((el: Element) => el.getAttribute('d'))
-  expect(rotation).toEqual(['M 161.45 3.86 A 130 130, 0, 0, 0, 98.55 3.86'])
+  const colors = Array.from(container.children)
+    .filter((el : Element) => el.tagName === 'RECT')
+    .map((el: Element) => el.getAttribute('fill'))
+  expect(colors).toEqual(Object.values(context.scale))
 })
 
-test('Render an interval label', () => {
+it('renders the text as per scale', () => {
+  act(() => {
+    render(
+      <WindroseContext.Provider value={ context }>
+        <Legend/>
+      </WindroseContext.Provider>
+      , container)
+  })
+  const text = Array.from(container.children)
+    .filter((el : Element) => el.tagName === 'TEXT')
+    .map((el: Element) => el.innerHTML)
+
+  const contextScale = Object.keys(context.scale)
+  contextScale[contextScale.length - 1] = contextScale[contextScale.length - 1] + '&lt;'
+  contextScale.push('kts')
+  expect(text).toEqual(contextScale)
+})
+
+test('Render a Legend', () => {
   const comp = renderer.create(
     <WindroseContext.Provider value={ context }>
-      <IntervalLabel
-        sector={0}
-        speeds={[10, 10, 10]}
-      />
+      <Legend/>
     </WindroseContext.Provider>
   )
   const tree = comp.toJSON()

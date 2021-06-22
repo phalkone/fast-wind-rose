@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render a ship 1`] = `
+<path
+  d="M 120 145 H 140 C 140 145 140 110 130 110 C 120 110 120 145 120 145 Z"
+  fill="none"
+  opacity="0.7"
+  stroke="grey"
+  strokeWidth="3"
+/>
+`;

@@ -3,7 +3,7 @@
 exports[`Render an interval label 1`] = `
 Array [
   <path
-    d="M 100.48552873684054 11.623921394328434 A 122 122, 0, 0, 1, 159.51447126315946 11.623921394328434"
+    d="M 100.49 11.62 A 122 122, 0, 0, 1, 159.51 11.62"
     fill="none"
     id="curved0"
     transform="rotate(0, 130, 130)"

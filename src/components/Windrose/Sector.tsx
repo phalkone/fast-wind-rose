@@ -27,9 +27,12 @@ export const Sector = (props: ISector) => {
       {speedCategories.map((count) => (
         <Fragment key={count[0]}>
           <path
-            d={`M ${context.center + (count[1] * sin)} ${context.center - (count[1] * cos)} ` +
-             `A ${count[1]} ${count[1]}, 0, 0, 0, ${context.center - (count[1] * sin)} ` +
-             `${context.center - (count[1] * cos)} L ${context.center} ${context.center} Z`}
+            d={`M ${(context.center + (count[1] * sin)).toFixed(2)} ` +
+             `${(context.center - (count[1] * cos)).toFixed(2)} ` +
+             `A ${count[1]} ${count[1]}, 0, 0, 0, ` +
+             `${(context.center - (count[1] * sin)).toFixed(2)} ` +
+             `${(context.center - (count[1] * cos)).toFixed(2)} ` +
+             `L ${context.center} ${context.center} Z`}
             fill={context.scale[count[0]]}
             transform={`rotate(${props.sector * context.sectorSize}, ` +
                      `${context.center}, ${context.center})`}

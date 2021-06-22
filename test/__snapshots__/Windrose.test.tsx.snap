@@ -59,6 +59,7 @@ exports[`Render a windrose 1`] = `
     &lt;&lt;
   </button>
   <svg
+    className="windrose"
     height={500}
     version="1.1"
     viewBox="0 0 325 260"
@@ -262,7 +263,7 @@ exports[`Render a windrose 1`] = `
     <line
       stroke="grey"
       strokeWidth="1"
-      transform="rotate(15, 130,130)"
+      transform="rotate(15,130,130)"
       x1={130}
       x2={130}
       y1={10}
@@ -271,7 +272,7 @@ exports[`Render a windrose 1`] = `
     <line
       stroke="grey"
       strokeWidth="1"
-      transform="rotate(45, 130,130)"
+      transform="rotate(45,130,130)"
       x1={130}
       x2={130}
       y1={10}
@@ -280,7 +281,7 @@ exports[`Render a windrose 1`] = `
     <line
       stroke="grey"
       strokeWidth="1"
-      transform="rotate(75, 130,130)"
+      transform="rotate(75,130,130)"
       x1={130}
       x2={130}
       y1={10}
@@ -289,7 +290,7 @@ exports[`Render a windrose 1`] = `
     <line
       stroke="grey"
       strokeWidth="1"
-      transform="rotate(105, 130,130)"
+      transform="rotate(105,130,130)"
       x1={130}
       x2={130}
       y1={10}
@@ -298,7 +299,7 @@ exports[`Render a windrose 1`] = `
     <line
       stroke="grey"
       strokeWidth="1"
-      transform="rotate(135, 130,130)"
+      transform="rotate(135,130,130)"
       x1={130}
       x2={130}
       y1={10}
@@ -307,7 +308,7 @@ exports[`Render a windrose 1`] = `
     <line
       stroke="grey"
       strokeWidth="1"
-      transform="rotate(165, 130,130)"
+      transform="rotate(165,130,130)"
       x1={130}
       x2={130}
       y1={10}
@@ -316,7 +317,7 @@ exports[`Render a windrose 1`] = `
     <line
       stroke="grey"
       strokeWidth="1"
-      transform="rotate(195, 130,130)"
+      transform="rotate(195,130,130)"
       x1={130}
       x2={130}
       y1={10}
@@ -325,7 +326,7 @@ exports[`Render a windrose 1`] = `
     <line
       stroke="grey"
       strokeWidth="1"
-      transform="rotate(225, 130,130)"
+      transform="rotate(225,130,130)"
       x1={130}
       x2={130}
       y1={10}
@@ -334,7 +335,7 @@ exports[`Render a windrose 1`] = `
     <line
       stroke="grey"
       strokeWidth="1"
-      transform="rotate(255, 130,130)"
+      transform="rotate(255,130,130)"
       x1={130}
       x2={130}
       y1={10}
@@ -343,7 +344,7 @@ exports[`Render a windrose 1`] = `
     <line
       stroke="grey"
       strokeWidth="1"
-      transform="rotate(285, 130,130)"
+      transform="rotate(285,130,130)"
       x1={130}
       x2={130}
       y1={10}
@@ -352,7 +353,7 @@ exports[`Render a windrose 1`] = `
     <line
       stroke="grey"
       strokeWidth="1"
-      transform="rotate(315, 130,130)"
+      transform="rotate(315,130,130)"
       x1={130}
       x2={130}
       y1={10}
@@ -361,7 +362,7 @@ exports[`Render a windrose 1`] = `
     <line
       stroke="grey"
       strokeWidth="1"
-      transform="rotate(345, 130,130)"
+      transform="rotate(345,130,130)"
       x1={130}
       x2={130}
       y1={10}
@@ -404,28 +405,28 @@ exports[`Render a windrose 1`] = `
       strokeWidth="1"
     />
     <path
-      d="M 161.0582854123025 14.088900845311798 A 120 120, 0, 0, 0, 98.9417145876975 14.088900845311798 L 130 130 Z"
+      d="M 161.06 14.09 A 120 120, 0, 0, 0, 98.94 14.09 L 130 130 Z"
       fill="rgb(243,63,29)"
       onMouseMove={[Function]}
       onMouseOut={[Function]}
       transform="rotate(0, 130, 130)"
     />
     <path
-      d="M 157.17599973576466 28.57778823964783 A 105 105, 0, 0, 0, 102.82400026423532 28.57778823964783 L 130 130 Z"
+      d="M 157.18 28.58 A 105 105, 0, 0, 0, 102.82 28.58 L 130 130 Z"
       fill="rgb(245,136,42)"
       onMouseMove={[Function]}
       onMouseOut={[Function]}
       transform="rotate(0, 130, 130)"
     />
     <path
-      d="M 141.64685702961344 86.53333781699192 A 45 45, 0, 0, 0, 118.35314297038657 86.53333781699192 L 130 130 Z"
+      d="M 141.65 86.53 A 45 45, 0, 0, 0, 118.35 86.53 L 130 130 Z"
       fill="rgb(143,180,232)"
       onMouseMove={[Function]}
       onMouseOut={[Function]}
       transform="rotate(0, 130, 130)"
     />
     <path
-      d="M 100.48552873684054 11.623921394328434 A 122 122, 0, 0, 1, 159.51447126315946 11.623921394328434"
+      d="M 100.49 11.62 A 122 122, 0, 0, 1, 159.51 11.62"
       fill="none"
       id="curved0"
       transform="rotate(0, 130, 130)"
@@ -449,14 +450,14 @@ exports[`Render a windrose 1`] = `
     0
     0
     <path
-      d="M 133.8822856765378 115.51111260566398 A 15 15, 0, 0, 0, 126.1177143234622 115.51111260566398 L 130 130 Z"
+      d="M 133.88 115.51 A 15 15, 0, 0, 0, 126.12 115.51 L 130 130 Z"
       fill="rgb(174,203,214)"
       onMouseMove={[Function]}
       onMouseOut={[Function]}
       transform="rotate(210, 130, 130)"
     />
     <path
-      d="M 161.4498464279568 3.8615555841204525 A 130 130, 0, 0, 0, 98.5501535720432 3.8615555841204525"
+      d="M 161.45 3.86 A 130 130, 0, 0, 0, 98.55 3.86"
       fill="none"
       id="curved7"
       transform="rotate(210, 130, 130)"
@@ -474,14 +475,14 @@ exports[`Render a windrose 1`] = `
       </textPath>
     </text>
     <path
-      d="M 133.8822856765378 115.51111260566398 A 15 15, 0, 0, 0, 126.1177143234622 115.51111260566398 L 130 130 Z"
+      d="M 133.88 115.51 A 15 15, 0, 0, 0, 126.12 115.51 L 130 130 Z"
       fill="rgb(174,203,214)"
       onMouseMove={[Function]}
       onMouseOut={[Function]}
       transform="rotate(240, 130, 130)"
     />
     <path
-      d="M 161.4498464279568 3.8615555841204525 A 130 130, 0, 0, 0, 98.5501535720432 3.8615555841204525"
+      d="M 161.45 3.86 A 130 130, 0, 0, 0, 98.55 3.86"
       fill="none"
       id="curved8"
       transform="rotate(240, 130, 130)"
@@ -499,14 +500,14 @@ exports[`Render a windrose 1`] = `
       </textPath>
     </text>
     <path
-      d="M 141.64685702961344 86.53333781699192 A 45 45, 0, 0, 0, 118.35314297038657 86.53333781699192 L 130 130 Z"
+      d="M 141.65 86.53 A 45 45, 0, 0, 0, 118.35 86.53 L 130 130 Z"
       fill="rgb(174,203,214)"
       onMouseMove={[Function]}
       onMouseOut={[Function]}
       transform="rotate(270, 130, 130)"
     />
     <path
-      d="M 100.48552873684054 11.623921394328434 A 122 122, 0, 0, 1, 159.51447126315946 11.623921394328434"
+      d="M 100.49 11.62 A 122 122, 0, 0, 1, 159.51 11.62"
       fill="none"
       id="curved9"
       transform="rotate(270, 130, 130)"
@@ -524,28 +525,28 @@ exports[`Render a windrose 1`] = `
       </textPath>
     </text>
     <path
-      d="M 149.41142838268905 57.55556302831988 A 75 75, 0, 0, 0, 110.58857161731095 57.55556302831988 L 130 130 Z"
+      d="M 149.41 57.56 A 75 75, 0, 0, 0, 110.59 57.56 L 130 130 Z"
       fill="rgb(244,36,27)"
       onMouseMove={[Function]}
       onMouseOut={[Function]}
       transform="rotate(300, 130, 130)"
     />
     <path
-      d="M 145.52914270615125 72.0444504226559 A 60 60, 0, 0, 0, 114.47085729384875 72.0444504226559 L 130 130 Z"
+      d="M 145.53 72.04 A 60 60, 0, 0, 0, 114.47 72.04 L 130 130 Z"
       fill="rgb(174,203,214)"
       onMouseMove={[Function]}
       onMouseOut={[Function]}
       transform="rotate(300, 130, 130)"
     />
     <path
-      d="M 137.7645713530756 101.02222521132795 A 30 30, 0, 0, 0, 122.23542864692438 101.02222521132795 L 130 130 Z"
+      d="M 137.76 101.02 A 30 30, 0, 0, 0, 122.24 101.02 L 130 130 Z"
       fill="rgb(143,180,232)"
       onMouseMove={[Function]}
       onMouseOut={[Function]}
       transform="rotate(300, 130, 130)"
     />
     <path
-      d="M 100.48552873684054 11.623921394328434 A 122 122, 0, 0, 1, 159.51447126315946 11.623921394328434"
+      d="M 100.49 11.62 A 122 122, 0, 0, 1, 159.51 11.62"
       fill="none"
       id="curved10"
       transform="rotate(300, 130, 130)"
@@ -563,28 +564,28 @@ exports[`Render a windrose 1`] = `
       </textPath>
     </text>
     <path
-      d="M 153.29371405922686 43.06667563398385 A 90 90, 0, 0, 0, 106.70628594077314 43.06667563398385 L 130 130 Z"
+      d="M 153.29 43.07 A 90 90, 0, 0, 0, 106.71 43.07 L 130 130 Z"
       fill="rgb(174,203,214)"
       onMouseMove={[Function]}
       onMouseOut={[Function]}
       transform="rotate(330, 130, 130)"
     />
     <path
-      d="M 141.64685702961344 86.53333781699192 A 45 45, 0, 0, 0, 118.35314297038657 86.53333781699192 L 130 130 Z"
+      d="M 141.65 86.53 A 45 45, 0, 0, 0, 118.35 86.53 L 130 130 Z"
       fill="rgb(143,180,232)"
       onMouseMove={[Function]}
       onMouseOut={[Function]}
       transform="rotate(330, 130, 130)"
     />
     <path
-      d="M 133.8822856765378 115.51111260566398 A 15 15, 0, 0, 0, 126.1177143234622 115.51111260566398 L 130 130 Z"
+      d="M 133.88 115.51 A 15 15, 0, 0, 0, 126.12 115.51 L 130 130 Z"
       fill="rgb(60,95,156)"
       onMouseMove={[Function]}
       onMouseOut={[Function]}
       transform="rotate(330, 130, 130)"
     />
     <path
-      d="M 100.48552873684054 11.623921394328434 A 122 122, 0, 0, 1, 159.51447126315946 11.623921394328434"
+      d="M 100.49 11.62 A 122 122, 0, 0, 1, 159.51 11.62"
       fill="none"
       id="curved11"
       transform="rotate(330, 130, 130)"

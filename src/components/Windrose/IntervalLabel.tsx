@@ -17,10 +17,10 @@ export const IntervalLabel = (props: ISector) => {
     radius += 8
     sign = -1
   }
-  const x1 = context.center - sign * radius * sin
-  const y1 = context.center - radius * cos
-  const x2 = context.center + sign * radius * sin
-  const y2 = context.center - radius * cos
+  const x1 = (context.center - sign * radius * sin).toFixed(2)
+  const y1 = (context.center - radius * cos).toFixed(2)
+  const x2 = (context.center + sign * radius * sin).toFixed(2)
+  const y2 = (context.center - radius * cos).toFixed(2)
 
   return (
     <>

@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render a tooltip 1`] = `
+Array [
+  <rect
+    height={14}
+    id="tooltip"
+    opacity="0.3"
+    width={78}
+    x={100}
+    y={200}
+  />,
+  <text
+    fill="white"
+    fontSize="9px"
+    id="tooltiptext"
+    textLength={73}
+    x={102}
+    y={210}
+  >
+    5-10kts: 1.0h
+  </text>,
+]
+`;

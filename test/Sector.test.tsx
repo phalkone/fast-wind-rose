@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, unmountComponentAtNode } from 'react-dom'
 import { act } from 'react-dom/test-utils'
-import { IntervalLabel } from '../src/components/Windrose/IntervalLabel'
+import { Sector } from '../src/components/Windrose/Sector'
 import { WindroseContext } from '../src/components/Windrose'
 import type { IWindroseContext } from '../src/types/Windrose.types'
 import renderer from 'react-test-renderer'
@@ -39,60 +39,39 @@ const context : IWindroseContext = {
   max: 24
 }
 
-it('shows the correct label', () => {
+it('renders the correct number of speed categories', () => {
   act(() => {
     render(
-      <WindroseContext.Provider value={ context }>
-        <IntervalLabel
-          sector={0}
-          speeds={[10, 10, 10]}
-        />
-      </WindroseContext.Provider>
+      <Sector
+        sector={0}
+        speeds={[2, 2, 2, 7, 7, 7, 12, 12, 12, 17]}
+      />
       , container)
   })
-  expect(container.textContent).toEqual('3.0h')
+  expect(Array.from(container.children).filter((el : Element) => el.tagName === 'PATH').length).toEqual(5)
 })
 
-it('has the correct rotation', () => {
+it('renders the correct rotation', () => {
   act(() => {
     render(
-      <WindroseContext.Provider value={ context }>
-        <IntervalLabel
-          sector={5}
-          speeds={[10, 10, 10]}
-        />
-      </WindroseContext.Provider>
+      <Sector
+        sector={2}
+        speeds={[2, 2, 2]}
+      />
       , container)
   })
   const rotation = Array.from(container.children)
     .filter((el : Element) => el.tagName === 'PATH')
     .map((el: Element) => el.getAttribute('transform'))
-  expect(rotation).toEqual(['rotate(150, 130, 130)'])
+  expect(rotation).toEqual(['rotate(60, 130, 130)', 'rotate(60, 130, 130)'])
 })
 
-it('does not show upside down', () => {
-  act(() => {
-    render(
-      <WindroseContext.Provider value={ context }>
-        <IntervalLabel
-          sector={5}
-          speeds={[10, 10, 10]}
-        />
-      </WindroseContext.Provider>
-      , container)
-  })
-  const rotation = Array.from(container.children)
-    .filter((el : Element) => el.tagName === 'PATH')
-    .map((el: Element) => el.getAttribute('d'))
-  expect(rotation).toEqual(['M 161.45 3.86 A 130 130, 0, 0, 0, 98.55 3.86'])
-})
-
-test('Render an interval label', () => {
+test('render a Sector', () => {
   const comp = renderer.create(
     <WindroseContext.Provider value={ context }>
-      <IntervalLabel
+      <Sector
         sector={0}
-        speeds={[10, 10, 10]}
+        speeds={[2, 2, 2, 7, 7, 7, 12, 12, 12]}
       />
     </WindroseContext.Provider>
   )
