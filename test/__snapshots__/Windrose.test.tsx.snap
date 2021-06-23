@@ -59,7 +59,6 @@ exports[`Render a windrose 1`] = `
     &lt;&lt;
   </button>
   <svg
-    className="windrose"
     height={500}
     version="1.1"
     viewBox="0 0 325 260"
