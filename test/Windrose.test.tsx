@@ -65,19 +65,23 @@ it('changes the number of sectors when choosing from the dropdown', () => {
   })
 
   const svg = document.querySelector('svg')
-  const select = document.getElementsByClassName('windrose-select')[0]
+  const select = document.getElementsByClassName('windrose-select')[0] as HTMLSelectElement
 
   if (svg) {
     expect(Array.from(svg.children).filter((el : Element) => el.tagName === 'line').length).toEqual(12)
 
+    select.value = '4'
+
     act(() => {
-      Simulate.change(select, { target: { value: '4' } })
+      Simulate.change(select, { target: select })
     })
 
     expect(Array.from(svg.children).filter((el : Element) => el.tagName === 'line').length).toEqual(4)
 
+    select.value = '32'
+
     act(() => {
-      Simulate.change(select, { target: { value: '32' } })
+      Simulate.change(select, { target: select })
     })
 
     expect(Array.from(svg.children).filter((el : Element) => el.tagName === 'line').length).toEqual(32)
