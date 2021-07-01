@@ -3,6 +3,8 @@ import { render } from 'react-dom'
 import Windrose from './components/Windrose'
 import { mockData } from './mocks'
 
+const element = document.createElement('div')
+
 render(
   <Windrose
     dirData={mockData.metrics[1].values}
@@ -12,4 +14,6 @@ render(
     size={500}
     legend
     ship
-  />, document.getElementById('root'))
+  />, element)
+
+document.body.appendChild(element)

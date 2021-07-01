@@ -5,7 +5,7 @@ import { Ship } from './Ship'
 import { Sector } from './Sector'
 import { divideBySector } from '../../utils/Windrose.util'
 import type { IWindrose, IWindroseContext } from '../../types/Windrose.types'
-import '../../themes/Windrose.scss'
+import '../../themes/Windrose.css'
 
 /**
  * Draws a windrose for provided relative wind data
