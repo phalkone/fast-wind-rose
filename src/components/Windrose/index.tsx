@@ -5,7 +5,7 @@ import { Ship } from './Ship'
 import { Sector } from './Sector'
 import { divideBySector } from '../../utils/Windrose.util'
 import type { IWindrose, IWindroseContext } from '../../types/Windrose.types'
-import '../../themes/Windrose.css'
+import * as styles from '../../themes/Windrose.css'
 
 /**
  * Draws a windrose for provided relative wind data
@@ -29,12 +29,12 @@ const Windrose = (props: IWindrose) => {
   }
 
   return (
-    <div className='windrose-container'>
+    <div className={styles.container}>
       {/* Selector for the number of sectors */}
       <select
         title='Number of sectors'
         value={sectorCount}
-        className='windrose-select'
+        className={styles.select}
         onChange={e => { setSectorCount(Number(e.target.value)) }}
       >
         {props.sectorArray.map(s => (
@@ -45,7 +45,7 @@ const Windrose = (props: IWindrose) => {
       </select>
       <button
         title='Show/hide legend'
-        className='windrose-button'
+        className={styles.button}
         onClick={e => { setLegend(!legend) }}
         style={{
           left: props.size - 30
